@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BARKFY — pet care, made simple.">
+  <title>BARKFY — Pet Care, Made Simple</title>
+
+  <!-- Brand typography: Fraunces for editorial headings, Outfit for UI text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,30,1;9..144,600,30,1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="header-left">
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="brand" href="#home" aria-label="BARKFY home">BARKFY</a>
+    </div>
+
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About us</a>
+      <a href="categories.html">Categories</a>
+      <a href="service.html">Service</a>
+      <a href="cart.html">Cart</a>
+      <a href="#contact">Contact us</a>
+    </nav>
+
+    <div class="header-right">
+      <a href="cart.html" class="cart-button" aria-label="Open cart" id="cartButton">
+        <svg viewBox="0 0 36 36" aria-hidden="true">
+          <path d="M3.8 5.5h4.4l3.2 17.1c.2 1.1 1.2 1.9 2.3 1.9h13.2c1 0 1.9-.7 2.2-1.7l3.2-11.2H9.1"/>
+          <circle cx="14.2" cy="29.5" r="2.1"/>
+          <circle cx="26.4" cy="29.5" r="2.1"/>
+        </svg>
+        <span class="cart-badge-count" id="headerCartCount" aria-label="Cart items"></span>
+      </a>
+      <button class="button button-lime header-shop" type="button" id="headerShop">Shop Now</button>
+    </div>
+
+    <div class="menu-panel" id="menuPanel" aria-hidden="true">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About us</a>
+      <a href="categories.html">Categories</a>
+      <a href="service.html">Service</a>
+      <a href="cart.html">Cart</a>
+      <a href="#contact">Contact us</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="heart-icon">♡</span> Pet care, made simple</div>
+
+        <h1>
+          <span>HAPPINESS COMES WITH</span>
+          <span>FOUR PAWS, <em>everything</em></span>
+          <span><em>your furry friend needs, all in</em></span>
+          <span><em>one happy place.</em></span>
+        </h1>
+
+        <p class="hero-description">
+          Food, toys, accessories and grooming from makers we trust,<br>
+          delivered to your door.
+        </p>
+
+        <div class="hero-actions">
+          <button class="button button-lime" type="button" id="heroShop">Shop Now</button>
+          <a href="service.html" class="button button-outline" id="bookTrial">Book Free-Trial</a>
+        </div>
+
+        <div class="trust-pill">
+          <div class="trust-avatars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <span>Trusted By 100+ Users</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="mascot-circle" id="mascotCircle">
+          <div class="circle-center" id="circleCenter" title="Click me for some love! ♡">
+            <div class="dog-mascot-window">
+              <div class="dog-art" id="dogArt">
+                <!-- Your dog image -->
+                <img
+                  src="images/barkfy-mascot.png"
+                  class="mascot-photo"
+                  alt="BARKFY dog mascot"
+                >
+
+                <!-- Moving eye pupils -->
+                <span class="eye-pupil pupil-left"></span>
+                <span class="eye-pupil pupil-right"></span>
+
+                <!-- Sweet blush on cheeks -->
+                <span class="dog-blush blush-left" aria-hidden="true"></span>
+                <span class="dog-blush blush-right" aria-hidden="true"></span>
+              </div>
+            </div>
+            <!-- Floating hearts effect layer -->
+            <div class="sweet-hearts-layer" id="sweetHeartsLayer" aria-hidden="true"></div>
+          </div>
+
+          <div class="curved-copy" aria-hidden="true">
+            <svg viewBox="0 0 600 600">
+              <defs>
+                <path id="circleTextPath"
+                  d="M 300,300
+     m -282,0
+     a 282,282 0 1,1 564,0
+     a 282,282 0 1,1 -564,0"/>
+              </defs>
+              <text>
+                <textPath href="#circleTextPath">
+                  barkfy • dog • grooming • care • barkfy • dog • grooming • care •  barkfy • dog • grooming • care • barkfy • dog • grooming • care • barkfy • dog • grooming • care • barkfy • dog • grooming • care •
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="floating-card loved-card">
+          <span class="star">★</span>
+          <span><strong>Loved by pups</strong><small>and their humans</small></span>
+        </div>
+
+        <div class="floating-card tip-card">
+          <span class="tip-icon">♜</span>
+          <span><strong>Free grooming tip</strong><small>with every booking</small></span>
+        </div>
+      </div>
+
+      <div class="paw paw-top" aria-hidden="true">
+        <i class="pad"></i><i class="toe toe-one"></i><i class="toe toe-two"></i><i class="toe toe-three"></i>
+      </div>
+      <div class="paw paw-bottom" aria-hidden="true">
+        <i class="pad"></i><i class="toe toe-one"></i><i class="toe toe-two"></i><i class="toe toe-three"></i>
+      </div>
+    </section>
+
+    <div class="bottom-ribbon" aria-label="BARKFY categories">
+      <div class="ribbon-track">
+        <div class="ribbon-group">
+          <span>Food</span><b>✦</b><span>Toys</span><b>✦</b><span>Accessories</span><b>✦</b>
+          <span>Grooming</span><b>✦</b><span>Delivery</span><b>✦</b>
+        </div>
+        <div class="ribbon-group" aria-hidden="true">
+          <span>Food</span><b>✦</b><span>Toys</span><b>✦</b><span>Accessories</span><b>✦</b>
+          <span>Grooming</span><b>✦</b><span>Delivery</span><b>✦</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARKFY STANDARD SECTION -->
+    <section class="barkfy-standard" id="about">
+      <div class="standard-container">
+        <div class="standard-heading">
+          <span class="standard-badge">The barkfy standard</span>
+          <h2>Always vet-tested for safe play.</h2>
+          <p>
+            We decline over 70% of market products because their ingredients or plastics don't meet our holistic standard.
+          </p>
+        </div>
+
+        <div class="standard-cards">
+          <!-- CARD 1 -->
+          <div class="standard-card">
+            <div class="standard-icon icon-lime" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <circle cx="12" cy="12" r="10" fill="#0C1031"/>
+                <path d="m8.5 12 2.5 2.5 5-5" stroke="#E8F478" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <h3>100%</h3>
+            <h4>Non-Toxic Toys</h4>
+            <p>
+              BPA, phthalate and heavy metal free certified natural rubber and double-stitched organic hemp canvas.
+            </p>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="standard-card">
+            <div class="standard-icon icon-blue">
+              0
+            </div>
+            <h3>0 Synthetic</h3>
+            <h4>Fragrances &amp; Dyes</h4>
+            <p>
+              Hypoallergenic botanical formulas crafted specifically for delicate skin barriers and sensitive noses.
+            </p>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="standard-card">
+            <div class="standard-icon icon-purple">
+              30d
+            </div>
+            <h3>30-Day</h3>
+            <h4>Wag Guarantee</h4>
+            <p>
+              If your pup turns their snout up or leaves a toy untouched, we'll swap it or refund you completely.
+            </p>
+          </div>
+
+          <!-- CARD 4 -->
+          <div class="standard-card vet-card">
+            <div class="vet-badge">
+              ★ Fear-Free Certified
+            </div>
+            <h4>Board of Vet Advisors</h4>
+            <p>
+              Every recipe, shampoo, and hardness rating is independently reviewed by licensed doctors of veterinary medicine.
+            </p>
+            <a href="#contact">
+              Meet our vet board
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY SHOWCASE SECTION -->
+    <section class="category-showcase-section" id="categories">
+      <div class="category-container">
+        
+        <!-- Section Header -->
+        <div class="category-header">
+          <span class="category-badge">Category</span>
+          <h2 class="category-heading">Everything for <em>Wagging Tails</em></h2>
+        </div>
+
+        <!-- Interactive Modular Showcase Stage -->
+        <div class="showcase-stage" id="showcaseStage">
+
+          <!-- 1. EverPaw Food Slot -->
+          <div class="category-slot slot-food" data-product="food" role="button" tabindex="0" aria-label="EverPaw Dog Food">
+            <div class="slot-item-wrapper">
+              <img src="images/category/food.png" alt="EverPaw Dog Food" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">EverPaw Dog Food</span>
+                <span class="tooltip-price">$34.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Plush Squeak Ball Slot -->
+          <div class="category-slot slot-ball" data-product="ball" role="button" tabindex="0" aria-label="Plush Squeak Tennis Ball">
+            <div class="slot-item-wrapper">
+              <img src="images/category/ball.png" alt="Plush Squeak Tennis Ball" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">Plush Squeak Ball</span>
+                <span class="tooltip-price">$14.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Lavender Leather Collar Slot -->
+          <div class="category-slot slot-collar" data-product="collar" role="button" tabindex="0" aria-label="Lavender Leather Collar">
+            <div class="slot-item-wrapper">
+              <img src="images/category/collar.png" alt="Lavender Leather Collar" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">Leather Collar</span>
+                <span class="tooltip-price">$24.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Central Toy Poodle Dog Mascot -->
+          <div class="category-slot slot-dog" id="categoryDog" role="button" tabindex="0" aria-label="Barkfy Toy Poodle">
+            <div class="slot-item-wrapper">
+              <img src="images/category/dog.png" alt="Barkfy Poodle" class="slot-image slot-dog-image">
+              <div class="slot-tooltip dog-tooltip">
+                <span class="tooltip-name">Sweet Barkfy Poodle 🐾</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Loopy Foaming Wash Slot -->
+          <div class="category-slot slot-loopy" data-product="loopy" role="button" tabindex="0" aria-label="Loopy Conditioning Gentle Pup Foam">
+            <div class="slot-item-wrapper">
+              <img src="images/category/loopy.png" alt="Loopy Pup Foam" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">Loopy Pup Foam</span>
+                <span class="tooltip-price">$18.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Dogelthy Care Bundle Slot -->
+          <div class="category-slot slot-combo" data-product="combo" role="button" tabindex="0" aria-label="Dogelthy Care Bundle">
+            <div class="slot-item-wrapper">
+              <img src="images/category/combo.png" alt="Dogelthy Care Bundle" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">Care Bundle (6-in-1)</span>
+                <span class="tooltip-price">$52.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Orthopedic Striped Pup Bed Slot -->
+          <div class="category-slot slot-bed" data-product="bed" role="button" tabindex="0" aria-label="Orthopedic Pup Bed">
+            <div class="slot-item-wrapper">
+              <img src="images/category/bed.png" alt="Orthopedic Pup Bed" class="slot-image">
+              <div class="slot-tooltip">
+                <span class="tooltip-name">Orthopedic Pup Bed</span>
+                <span class="tooltip-price">$58.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Center "Shop Now" Button -->
+          <button
+            type="button"
+            class="stage-shop-btn"
+            id="stageShopBtn"
+            aria-label="Shop All Categories"
+          >
+            Shop Now
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OUR NEW LAUNCH SECTION -->
+    <section class="new-launch-section" id="new-launches">
+      <div class="launch-container">
+        
+        <!-- Header with centered title & right-aligned arrow buttons -->
+        <div class="launch-header-row">
+          <div class="launch-header-center">
+            <span class="launch-badge">Products</span>
+            <h2 class="launch-heading">Our New Launch</h2>
+            <p class="launch-subheading">
+              We decline over 70% of market products because their ingredients or plastics don't meet our holistic standard.
+            </p>
+          </div>
+
+          <div class="launch-nav-controls" aria-label="New launch carousel controls">
+            <button type="button" class="launch-nav-btn prev" id="launchPrevBtn" aria-label="Previous products">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button type="button" class="launch-nav-btn next" id="launchNextBtn" aria-label="Next products">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Launch Cards Track / Grid -->
+        <div class="launch-carousel-track" id="launchCarousel">
+
+          <!-- Card 1: Pet Accessories -->
+          <a class="launch-card" href="product-details.html?id=collar" data-product="collar" aria-label="View Pet Accessories">
+            <span class="launch-card-badge">♡ Pet Accessories</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/accessories.png" alt="Pet Accessories" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 2: Pet Care -->
+          <a class="launch-card" href="product-details.html?id=loopy" data-product="loopy" aria-label="View Pet Care">
+            <span class="launch-card-badge">♡ Pet Care</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/care.jpg" alt="Pet Care" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 3: Pet Foods -->
+          <a class="launch-card" href="product-details.html?id=food" data-product="food" aria-label="View Pet Foods">
+            <span class="launch-card-badge">♡ Pet foods</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/foods.jpg" alt="Pet Foods" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 4: Pet Toys -->
+          <a class="launch-card" href="product-details.html?id=ball" data-product="ball" aria-label="View Pet Toys">
+            <span class="launch-card-badge">♡ Pet Toys</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/toys.jpg" alt="Pet Toys" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 5: Pet combos -->
+          <a class="launch-card" href="product-details.html?id=combo" data-product="combo" aria-label="View Pet Combos">
+            <span class="launch-card-badge">♡ Pet combos</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/combo.jpg" alt="Pet Combos" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <!-- Card 6: Pet comfort -->
+          <a class="launch-card" href="product-details.html?id=bed" data-product="bed" aria-label="View Pet Comfort">
+            <span class="launch-card-badge">♡ Pet comfort</span>
+            <div class="launch-image-frame">
+              <img src="images/new-launch/comfort.png" alt="Pet Comfort" class="launch-card-img">
+            </div>
+            <span class="launch-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="arrow-svg" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SPECIALIZED GROOMING & WELLNESS SECTION -->
+    <section class="grooming-section" id="grooming">
+      <div class="grooming-container">
+        
+        <!-- Section Header -->
+        <div class="grooming-header">
+          <span class="grooming-badge">grooming</span>
+          <h2 class="grooming-heading">
+            Specialized grooming &amp;<br>wellness <em>crafted for your pet</em>
+          </h2>
+          <p class="grooming-subheading">
+            Pick a day, meet your groomer, and see how your pet feels. No long-term commitment.
+          </p>
+          <a href="service.html" class="grooming-cta-btn" id="groomingBookBtn">
+            Book a Free Trial
+          </a>
+        </div>
+
+        <!-- 4 Grooming Service Cards -->
+        <div class="grooming-cards-grid">
+
+          <!-- Service 1: Haircut -->
+          <a href="service.html#svc-pricing" class="grooming-card">
+            <div class="grooming-image-frame">
+              <img src="images/grooming/haircut.png" alt="Haircut" class="grooming-img">
+            </div>
+            <div class="grooming-card-body">
+              <h3 class="grooming-card-title">Haircut</h3>
+              <p class="grooming-card-desc">Neat, comfortable trims for every paws</p>
+            </div>
+          </a>
+
+          <!-- Service 2: Nail Trim -->
+          <a href="service.html#svc-pricing" class="grooming-card">
+            <div class="grooming-image-frame">
+              <img src="images/grooming/nail-trim.jpg" alt="Nail Trim" class="grooming-img">
+            </div>
+            <div class="grooming-card-body">
+              <h3 class="grooming-card-title">Nail Trim</h3>
+              <p class="grooming-card-desc">Careful clipping, calm hands.</p>
+            </div>
+          </a>
+
+          <!-- Service 3: Teeth Care -->
+          <a href="service.html#svc-pricing" class="grooming-card">
+            <div class="grooming-image-frame">
+              <img src="images/grooming/teeth-care.jpg" alt="Teeth Care" class="grooming-img">
+            </div>
+            <div class="grooming-card-body">
+              <h3 class="grooming-card-title">Teeth Care</h3>
+              <p class="grooming-card-desc">Fresh breath and healthy gums.</p>
+            </div>
+          </a>
+
+          <!-- Service 4: Bath & dry -->
+          <a href="service.html#svc-pricing" class="grooming-card">
+            <div class="grooming-image-frame">
+              <img src="images/grooming/bath-dry.jpg" alt="Bath & dry" class="grooming-img">
+            </div>
+            <div class="grooming-card-body">
+              <h3 class="grooming-card-title">Bath &amp; dry</h3>
+              <p class="grooming-card-desc">A warm wash and a fluffy finish.</p>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VERIFIED REVIEWS SECTION -->
+    <section class="reviews-section" id="reviews">
+      <div class="reviews-container">
+        
+        <!-- Header -->
+        <div class="reviews-header">
+          <span class="reviews-badge">verified reviews</span>
+          <h2 class="reviews-heading">Hear from <em>Verified Families</em></h2>
+          <p class="reviews-subheading">
+            Over 4,800 happy dogs and pet parents across the nation trust Barkfy every month.
+          </p>
+        </div>
+
+        <!-- 3 Review Cards Grid -->
+        <div class="reviews-grid">
+
+          <!-- Card 1 -->
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-quote">
+              “Barnaby used to shake uncontrollably at traditional groomers. The Barkfy salon was calm, quiet, and smelling like fresh lavender. He came back strutting with joy!”
+            </p>
+            <div class="review-author">
+              <div class="author-avatar avatar-peach">CB</div>
+              <div class="author-info">
+                <h4 class="author-name">Claire &amp; Barnaby</h4>
+                <p class="author-meta">Cavalier King Charles • Member since 2023</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-quote">
+              “The raw bison food solved Winston's persistent allergy scratchiness in under two weeks. Plus their doorstep delivery is always on time with eco-friendly chilling packs.”
+            </p>
+            <div class="review-author">
+              <div class="author-avatar avatar-blue">MW</div>
+              <div class="author-info">
+                <h4 class="author-name">Marcus &amp; Winston</h4>
+                <p class="author-meta">French Bulldog • Member since 2024</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-quote">
+              “Finally a pet brand that doesn't cut corners with plastics or mystery treats. The orthopedic bed also looks gorgeous in our living room instead of an eyesore.”
+            </p>
+            <div class="review-author">
+              <div class="author-avatar avatar-lime">SL</div>
+              <div class="author-info">
+                <h4 class="author-name">Sophia &amp; Luna</h4>
+                <p class="author-meta">Golden Retriever • Member since 2022</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+      <div class="contact-container">
+        
+        <!-- Header -->
+        <div class="contact-header">
+          <span class="contact-badge">Contact Us</span>
+          <h2 class="contact-heading">Say hello, we love <em>new tails.</em></h2>
+          <p class="contact-subheading">
+            Questions about grooming, products or a free trial? Send us a note and we'll reply within one working day.
+          </p>
+        </div>
+
+        <!-- 2-Column Contact Grid -->
+        <div class="contact-grid">
+
+          <!-- Left Column: Image + Info Cards -->
+          <div class="contact-info-col">
+            <div class="contact-image-frame">
+              <img src="images/contact/puppies.jpg" alt="Happy Barkfy puppies" class="contact-puppies-img">
+            </div>
+
+            <div class="contact-info-cards">
+              <!-- Item 1: Phone -->
+              <div class="contact-info-pill">
+                <div class="info-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="info-label">Call or WhatsApp</span>
+                  <a href="tel:+910000000000" class="info-value">[+91 00000 00000]</a>
+                </div>
+              </div>
+
+              <!-- Item 2: Email -->
+              <div class="contact-info-pill">
+                <div class="info-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="info-label">Email us</span>
+                  <a href="mailto:hello@yourdomain.com" class="info-value">[hello@yourdomain.com]</a>
+                </div>
+              </div>
+
+              <!-- Item 3: Studio Address -->
+              <div class="contact-info-pill">
+                <div class="info-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="info-label">Visit our grooming studio</span>
+                  <span class="info-value">[Studio address, City]</span>
+                </div>
+              </div>
+
+              <!-- Item 4: Opening Hours -->
+              <div class="contact-info-pill">
+                <div class="info-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <span class="info-label">Opening hours</span>
+                  <span class="info-value">[Mon to Sat, 9 am to 7 pm]</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Contact Form -->
+          <div class="contact-form-card">
+            <h3 class="form-title">Send us a message</h3>
+            <p class="form-hint">Booking a trial? Choose "Free grooming trial" below.</p>
+
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <label class="form-field">
+                  <span class="field-label">Your name</span>
+                  <input type="text" id="contactName" placeholder="Full name" required>
+                </label>
+
+                <label class="form-field">
+                  <span class="field-label">Phone number</span>
+                  <input type="tel" id="contactPhone" placeholder="So we can confirm" required>
+                </label>
+              </div>
+
+              <div class="form-row">
+                <label class="form-field">
+                  <span class="field-label">Email</span>
+                  <input type="email" id="contactEmail" placeholder="you@example.com" required>
+                </label>
+
+                <label class="form-field">
+                  <span class="field-label">What do you need?</span>
+                  <div class="select-wrapper">
+                    <select id="contactTopic">
+                      <option value="trial" selected>Free grooming trial</option>
+                      <option value="grooming">General grooming inquiry</option>
+                      <option value="product">Product question</option>
+                      <option value="order">Track or change order</option>
+                      <option value="vet">Consult vet advisors</option>
+                    </select>
+                  </div>
+                </label>
+              </div>
+
+              <label class="form-field full-width">
+                <span class="field-label">Tell us about your pet</span>
+                <textarea id="contactMessage" rows="4" placeholder="Name, breed, age, anything we should know..."></textarea>
+              </label>
+
+              <div class="form-actions-row">
+                <button type="submit" class="btn-send-message" id="contactSubmitBtn">
+                  Send message
+                </button>
+                <span class="form-reply-note">We reply within one working day.</span>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Top 5 Columns -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-col brand-col">
+          <h2 class="footer-logo">BARKFY</h2>
+          <p class="footer-tagline">
+            Food, toys, accessories and grooming from makers we trust, delivered to your door.
+          </p>
+          <div class="footer-social-links">
+            <a href="#instagram" class="social-circle" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#x" class="social-circle" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="tel:+910000000000" class="social-circle" aria-label="Phone">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@yourdomain.com" class="social-circle" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Shop -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Shop</h4>
+          <ul class="footer-nav-list">
+            <li><a href="categories.html?filter=food">Food</a></li>
+            <li><a href="categories.html?filter=toys">Toys</a></li>
+            <li><a href="categories.html?filter=accessories">Accessories</a></li>
+            <li><a href="#new-launches">New launches</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-nav-list">
+            <li><a href="service.html">Grooming</a></li>
+            <li><a href="service.html">Book a free trial</a></li>
+            <li><a href="#shipping">Delivery</a></li>
+            <li><a href="#standard">Wag guarantee</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#about">About us</a></li>
+            <li><a href="#standard">Vet advisors</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Newsletter -->
+        <div class="footer-col newsletter-col">
+          <h4 class="footer-col-title">Get tips and offers</h4>
+          <p class="footer-newsletter-sub">
+            Monthly care tips and new launches. No spam, ever.
+          </p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="Your email" required>
+            <button type="submit" class="newsletter-submit-btn" id="newsletterSubmitBtn">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright & Legal -->
+      <div class="footer-bottom-row">
+        <p>© 2026 Barkfy Inc. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="#privacy">Privacy Policy</a>
+          <span>•</span>
+          <a href="#terms">Terms of Service</a>
+          <span>•</span>
+          <a href="#cookies">Cookie Preferences</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  
+<!-- ACCOUNT DRAWER -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+<aside class="account-drawer" id="accountDrawer" aria-hidden="true">
+
+  <!-- When user is NOT signed in -->
+  <div class="logged-out-view" id="loggedOutView">
+    <button class="drawer-close" id="drawerCloseLoggedOut" aria-label="Close menu">×</button>
+    <div class="logged-out-inner">
+      <div class="logged-out-icon">🐾</div>
+      <h3 class="logged-out-title">Welcome to BARKFY</h3>
+      <p class="logged-out-sub">Sign in to manage orders, track deliveries and pet details.</p>
+      <button class="signin-button" id="drawerSignIn" type="button">Sign In</button>
+      <button class="signup-link-btn" id="drawerSignUp" type="button">Create an account</button>
+    </div>
+  </div>
+
+  <!-- When user IS signed in -->
+  <div class="logged-in-view" id="loggedInView" hidden>
+
+    <div class="profile-header">
+      <div class="profile-avatar" id="profileAvatar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="profile-info">
+        <h3 id="profileName">[Your name]</h3>
+        <p id="profileEmail">[you@example.com]</p>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+    </div>
+
+    <div class="drawer-section">
+      <h4 class="drawer-section-heading">MANAGE ORDERS</h4>
+      <nav class="drawer-nav">
+        <a class="drawer-link" href="my-account.html" data-page="my-account">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>My account</span>
+        </a>
+        <a class="drawer-link" href="orders.html" data-page="orders">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="21 8 21 21 3 21 3 8"></polyline>
+            <rect x="1" y="3" width="22" height="5"></rect>
+            <line x1="10" y1="12" x2="14" y2="12"></line>
+          </svg>
+          <span>Orders</span>
+        </a>
+        <a class="drawer-link" href="track-order.html" data-page="track-order">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+          <span>Track my order</span>
+        </a>
+        <a class="drawer-link" href="order-history.html" data-page="order-history">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>Order history</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="drawer-section">
+      <h4 class="drawer-section-heading">HELP AND POLICIES</h4>
+      <nav class="drawer-nav">
+        <a class="drawer-link" href="#privacy">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Privacy</span>
+        </a>
+        <a class="drawer-link" href="#contact">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Help and support</span>
+        </a>
+        <a class="drawer-link" href="#contact">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>FAQ</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="drawer-footer">
+      <button class="logout-button" id="logoutButton" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Log out</span>
+      </button>
+    </div>
+
+  </div>
+</aside>
+
+
+<!-- BARKFY AUTHENTICATION -->
+<div class="auth-overlay" id="authOverlay" aria-hidden="true">
+
+  <section class="auth-card signup-mode" id="authCard">
+
+    <button class="auth-close" id="authClose" type="button">×</button>
+
+    <!-- SIGN UP HEADING -->
+    <div class="auth-heading" id="signupHeading">
+      <span class="auth-badge">♡ &nbsp; It only takes a minute</span>
+      <h2>Create your account</h2>
+      <p>Sign up to shop, book grooming and keep your pup's details in one place.</p>
+    </div>
+
+    <!-- SIGN IN HEADING -->
+    <div class="auth-heading" id="loginHeading" hidden>
+      <span class="auth-badge login-badge">♡ &nbsp; Good to see you again</span>
+      <h2>Welcome back</h2>
+      <p>Log in to track orders, book grooming and manage your pup's details.</p>
+    </div>
+
+    <form id="authForm">
+
+      <!-- FULL NAME -->
+      <div id="signupFields">
+        <label class="auth-field">
+          Full name
+          <input type="text" id="authName"
+                 placeholder="Your name">
+        </label>
+      </div>
+
+      <!-- EMAIL -->
+      <label class="auth-field">
+        Email
+        <input type="email" id="authEmail"
+               placeholder="You@gmail.com" required>
+      </label>
+
+      <!-- PASSWORD -->
+      <label class="auth-field">
+        Password
+
+        <div class="password-control">
+          <input type="password" id="authPassword"
+                 placeholder="At least 8 characters" required>
+
+          <button type="button" id="togglePassword"
+                  aria-label="Show password">
+            <svg viewBox="0 0 24 24">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+        <small id="passwordHint">Use 8 or more characters.</small>
+      </label>
+
+      <!-- PET DETAILS -->
+      <div class="pet-fields" id="petFields">
+
+        <label class="auth-field">
+          Pet name
+          <input type="text" id="petName"
+                 placeholder="e.g. [PET NAME]">
+        </label>
+
+        <label class="auth-field">
+          Pet type
+          <select id="petType">
+            <option value="Labrador">Labrador</option>
+            <option value="Golden Retriever">Golden Retriever</option>
+            <option value="German Shepherd">German Shepherd</option>
+            <option value="Beagle">Beagle</option>
+            <option value="Poodle">Poodle</option>
+            <option value="Indie">Indie</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+      </div>
+
+      <!-- TERMS AND CONDITIONS -->
+      <div class="terms-row" id="termsRow">
+        <input type="checkbox" id="acceptTerms">
+        <label for="acceptTerms">
+          I agree to the <a href="#terms">Terms</a>
+          and <a href="#privacy">Privacy Policy</a>
+        </label>
+      </div>
+
+      <!-- LOGIN OPTIONS -->
+      <div class="login-options" id="loginOptions" hidden>
+
+        <label>
+          <input type="checkbox" id="keepLoggedIn">
+          Keep me logged in
+        </label>
+
+        <button type="button" id="forgotPassword">
+          Forgot password?
+        </button>
+
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="auth-submit" id="authSubmit">
+        Create account
+      </button>
+
+    </form>
+
+    <div class="auth-divider">
+      <span>or</span>
+    </div>
+
+    <!-- GOOGLE SIGN IN -->
+    <button type="button" class="google-auth-button"
+            id="googleAuthButton">
+
+      <span class="google-g">G</span>
+      <span>Sign up with Google</span>
+
+    </button>
+
+    <!-- SWITCH BETWEEN FORMS -->
+    <p class="auth-switch">
+      <span id="authSwitchText">Already have an account?</span>
+      <button type="button" id="authSwitchButton">Log in</button>
+    </p>
+
+    <p id="authFeedback" class="auth-feedback"></p>
+
+  </section>
+</div>
+
+  <!-- PRODUCT DETAIL / QUICK VIEW MODAL -->
+  <div class="product-modal-backdrop" id="productModalBackdrop" aria-hidden="true">
+    <div class="product-modal-card" id="productModalCard" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+      <button type="button" class="product-modal-close" id="productModalClose" aria-label="Close product details">×</button>
+
+      <div class="product-modal-grid">
+        <!-- Left: Product Image Showcase -->
+        <div class="product-modal-media">
+          <div class="product-media-frame">
+            <img src="images/products/ball.png" alt="Product preview" id="modalProductImg" class="modal-product-img">
+            <span class="product-vet-badge" id="modalVetBadge">🐾 Vet-Tested</span>
+          </div>
+          <div class="product-guarantee-badges">
+            <span class="guarantee-pill">🛡️ 30-Day Wag Guarantee</span>
+            <span class="guarantee-pill">🌿 100% Non-Toxic</span>
+          </div>
+        </div>
+
+        <!-- Right: Product Details & Purchase Controls -->
+        <div class="product-modal-info">
+          <span class="product-modal-cat" id="modalProductCat">Interactive Toys</span>
+          <h3 class="product-modal-title" id="modalProductTitle">Plush Squeak Tennis Ball</h3>
+
+          <div class="product-modal-rating">
+            <div class="stars" id="modalProductStars">★★★★★</div>
+            <span class="rating-text" id="modalProductRating">4.9 (142 reviews)</span>
+          </div>
+
+          <div class="product-modal-pricing">
+            <span class="price-current" id="modalProductPrice">$14.00</span>
+            <span class="price-original" id="modalProductOldPrice">$18.00</span>
+            <span class="price-discount" id="modalProductDiscount">Save 22%</span>
+          </div>
+
+          <p class="product-modal-desc" id="modalProductDesc">
+            Handcrafted with textured plush wool and a gentle non-toxic core. Built-in squeaker entertains for hours without harsh squeaks, keeping your pup happily engaged and mentally sharp.
+          </p>
+
+          <div class="product-highlights" id="modalProductHighlights">
+            <span class="highlight-chip">BPA &amp; Phthalate Free</span>
+            <span class="highlight-chip">Reinforced Seams</span>
+            <span class="highlight-chip">Gentle on Teeth</span>
+            <span class="highlight-chip">Machine Washable</span>
+          </div>
+
+          <!-- Quantity Selector & Actions -->
+          <div class="product-modal-actions">
+            <div class="quantity-selector" aria-label="Quantity selector">
+              <button type="button" class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+              <span class="qty-display" id="qtyVal" aria-live="polite">1</span>
+              <button type="button" class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+            </div>
+
+            <button type="button" class="btn-add-cart" id="modalAddCart">
+              <span class="cart-btn-icon">🛒</span>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn-buy-now" id="modalBuyNow">
+            Buy Now • Instant Checkout
+          </button>
+
+          <p class="product-delivery-note">
+            🚀 <strong>Fast Pup Delivery:</strong> Free shipping on orders over $35 • 100% satisfaction guaranteed
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-toast" id="siteToast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

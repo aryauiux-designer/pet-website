@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — BARKFY</title>
+
+  <!-- Brand Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared site stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Cart specific stylesheet -->
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       NAVBAR (BARKFY Standard Header)
+       ========================================================= -->
+  <header class="topbar">
+    <div class="header-left">
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="brand" href="index.html" aria-label="BARKFY home">BARKFY</a>
+    </div>
+
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About us</a>
+      <a href="categories.html">Categories</a>
+      <a href="service.html">Service</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="index.html#contact">Contact us</a>
+    </nav>
+
+    <div class="header-right">
+      <a href="cart.html" class="cart-button" aria-label="View cart" id="cartButton">
+        <svg viewBox="0 0 36 36" aria-hidden="true">
+          <path d="M3.8 5.5h4.4l3.2 17.1c.2 1.1 1.2 1.9 2.3 1.9h13.2c1 0 1.9-.7 2.2-1.7l3.2-11.2H9.1"/>
+          <circle cx="14.2" cy="29.5" r="2.1"/>
+          <circle cx="26.4" cy="29.5" r="2.1"/>
+        </svg>
+        <span class="cart-badge-count" id="headerCartCount" aria-label="Cart items"></span>
+      </a>
+      <a href="categories.html" class="button button-lime header-shop" id="headerShop">Shop Now</a>
+    </div>
+
+    <div class="menu-panel" id="menuPanel" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About us</a>
+      <a href="categories.html">Categories</a>
+      <a href="service.html">Service</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="index.html#contact">Contact us</a>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       CART PAGE CONTENT
+       ========================================================= -->
+  <main class="cart-page-main">
+    <div class="cart-page-container">
+
+      <!-- Breadcrumbs -->
+      <nav class="cart-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="crumb-divider">/</span>
+        <span class="crumb-current">Cart</span>
+      </nav>
+
+      <!-- Page Heading -->
+      <div class="cart-header">
+        <h1 class="cart-title">Your <em>cart</em></h1>
+        <span class="cart-items-count" id="cartItemsCountLabel">2 items</span>
+      </div>
+
+      <!-- Main Cart Layout (2 Columns) -->
+      <div class="cart-layout-grid" id="cartLayoutGrid">
+
+        <!-- ── Left Column: Cart Items List ── -->
+        <div class="cart-items-column">
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Dynamic items rendered by cart.js -->
+          </div>
+
+          <!-- Continue Shopping Link -->
+          <div class="continue-shopping-wrap">
+            <a href="categories.html" class="continue-shopping-link">
+              ← Continue shopping
+            </a>
+          </div>
+        </div>
+
+        <!-- ── Right Column: Order Summary ── -->
+        <aside class="cart-summary-column">
+          <div class="order-summary-card">
+            <h2 class="summary-title">Order summary</h2>
+
+            <!-- Discount Code Section -->
+            <div class="discount-section">
+              <label for="discountCodeInput" class="discount-label">Discount code</label>
+              <div class="discount-input-row">
+                <input type="text" id="discountCodeInput" placeholder="Enter code" class="discount-input" />
+                <button type="button" id="applyDiscountBtn" class="discount-apply-btn">Apply</button>
+              </div>
+              <div class="discount-feedback" id="discountFeedback" hidden></div>
+            </div>
+
+            <!-- Price Breakdown Lines -->
+            <div class="summary-lines">
+              <div class="summary-line">
+                <span class="line-label">Subtotal</span>
+                <span class="line-val" id="summarySubtotal">₹2,148</span>
+              </div>
+
+              <div class="summary-line discount-line" id="discountRow" hidden>
+                <span class="line-label">Discount (<span id="discountPercent">10%</span>)</span>
+                <span class="line-val" id="summaryDiscount">-₹215</span>
+              </div>
+
+              <div class="summary-line">
+                <span class="line-label">Delivery</span>
+                <span class="line-val subdued">Calculated at checkout</span>
+              </div>
+
+              <div class="summary-line">
+                <span class="line-label">Taxes</span>
+                <span class="line-val subdued">Included</span>
+              </div>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <!-- Total Line -->
+            <div class="summary-total-row">
+              <span class="total-label">Total</span>
+              <span class="total-amount" id="summaryTotal">₹2,148</span>
+            </div>
+
+            <!-- Main CTA Button -->
+            <button type="button" class="btn-checkout" id="checkoutBtn">
+              Checkout
+            </button>
+
+            <p class="checkout-hint">
+              Sign in or create an account to complete your order.
+            </p>
+
+            <!-- Wag Guarantee Badge -->
+            <div class="wag-guarantee-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>30-day Wag guarantee on every order</span>
+            </div>
+
+          </div>
+        </aside>
+
+      </div><!-- /cart-layout-grid -->
+
+      <!-- Empty Cart State -->
+      <div class="empty-cart-view" id="emptyCartView" hidden>
+        <div class="empty-cart-card">
+          <div class="empty-cart-icon">🛒</div>
+          <h2 class="empty-cart-title">Your cart is currently empty</h2>
+          <p class="empty-cart-sub">Looks like you haven't added any pet favorites yet. Explore our vet-tested nutrition, safe play toys, and gentle care products!</p>
+          <a href="categories.html" class="button button-lime empty-cart-btn">Explore Products</a>
+        </div>
+      </div>
+
+      <!-- ── "Add something for your pup" Recommendations Section ── -->
+      <section class="cart-upsell-section">
+        <h2 class="upsell-title">Add something for <em>your pup</em></h2>
+
+        <div class="upsell-grid">
+
+          <!-- Upsell 1: Bed -->
+          <article class="upsell-card">
+            <a href="product-details.html?id=bed" class="upsell-img-wrap">
+              <img src="images/category/bed.png" alt="Cozy striped dog bed" />
+            </a>
+            <div class="upsell-info">
+              <h3 class="upsell-name"><a href="product-details.html?id=bed">Cozy striped dog bed</a></h3>
+              <div class="upsell-action-row">
+                <span class="upsell-price">₹1,899</span>
+                <button type="button" class="upsell-quick-add" data-id="bed" data-name="Cozy striped dog bed" data-price="1899" data-img="images/category/bed.png" data-variant="Size M">+ Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Upsell 2: Shampoo -->
+          <article class="upsell-card">
+            <a href="product-details.html?id=loopy" class="upsell-img-wrap">
+              <img src="images/category/loopy.png" alt="Loopy foaming pet shampoo" />
+            </a>
+            <div class="upsell-info">
+              <h3 class="upsell-name"><a href="product-details.html?id=loopy">Loopy foaming pet shampoo</a></h3>
+              <div class="upsell-action-row">
+                <span class="upsell-price">₹649</span>
+                <button type="button" class="upsell-quick-add" data-id="loopy" data-name="Loopy foaming pet shampoo" data-price="649" data-img="images/category/loopy.png" data-variant="250 ml">+ Add</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Upsell 3: Ball -->
+          <article class="upsell-card">
+            <a href="product-details.html?id=ball" class="upsell-img-wrap">
+              <img src="images/category/ball.png" alt="Plush toy ball" />
+            </a>
+            <div class="upsell-info">
+              <h3 class="upsell-name"><a href="product-details.html?id=ball">Plush toy ball</a></h3>
+              <div class="upsell-action-row">
+                <span class="upsell-price">₹399</span>
+                <button type="button" class="upsell-quick-add" data-id="ball" data-name="Plush toy ball" data-price="399" data-img="images/category/ball.png" data-variant="1 Ball">+ Add</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div><!-- /cart-page-container -->
+  </main>
+
+  <!-- =========================================================
+       FOOTER (Standard BARKFY Footer)
+       ========================================================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+
+      <!-- Top 5 Columns -->
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-col brand-col">
+          <h2 class="footer-logo">BARKFY</h2>
+          <p class="footer-tagline">
+            Food, toys, accessories and grooming from makers we trust, delivered to your door.
+          </p>
+          <div class="footer-social-links">
+            <a href="#instagram" class="social-circle" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#x" class="social-circle" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="tel:+910000000000" class="social-circle" aria-label="Phone">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@yourdomain.com" class="social-circle" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Shop -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Shop</h4>
+          <ul class="footer-nav-list">
+            <li><a href="categories.html?filter=food">Food</a></li>
+            <li><a href="categories.html?filter=toys">Toys</a></li>
+            <li><a href="categories.html?filter=accessories">Accessories</a></li>
+            <li><a href="index.html#new-launches">New launches</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html#grooming">Grooming</a></li>
+            <li><a href="index.html#grooming">Book a free trial</a></li>
+            <li><a href="#shipping">Delivery</a></li>
+            <li><a href="index.html#about">Wag guarantee</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html#about">About us</a></li>
+            <li><a href="index.html#about">Vet advisors</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="index.html#contact">Contact us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Newsletter -->
+        <div class="footer-col newsletter-col">
+          <h4 class="footer-col-title">Get tips and offers</h4>
+          <p class="footer-newsletter-sub">
+            Monthly care tips and new launches. No spam, ever.
+          </p>
+          <form class="footer-newsletter-form" id="cartNewsletterForm">
+            <input type="email" id="cartNewsletterEmail" placeholder="Your email" required />
+            <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright & Legal -->
+      <div class="footer-bottom-row">
+        <p class="footer-copyright">© 2026 Barkfy Inc. All rights reserved.</p>
+        <div class="footer-legal-links">
+          <a href="#privacy">Privacy Policy</a>
+          <span>•</span>
+          <a href="#terms">Terms of Service</a>
+          <span>•</span>
+          <a href="#cookies">Cookie Preferences</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-modal-backdrop" id="checkoutModal" aria-hidden="true">
+    <div class="checkout-modal-box" role="dialog" aria-labelledby="checkoutModalTitle">
+      <button type="button" class="checkout-modal-close" id="checkoutCloseBtn" aria-label="Close checkout">×</button>
+
+      <!-- Step 1: Checkout Form -->
+      <div id="checkoutFormStep">
+        <div class="checkout-header">
+          <span class="checkout-badge">Fast &amp; Secure</span>
+          <h2 id="checkoutModalTitle" class="checkout-title">Complete your order</h2>
+          <p class="checkout-sub">We’ll deliver your pet's package in eco-friendly protective chilling packs.</p>
+        </div>
+
+        <form id="checkoutOrderForm" class="checkout-form">
+          <div class="checkout-form-grid">
+            <label class="checkout-field">
+              <span class="field-label">Full Name</span>
+              <input type="text" id="shipName" placeholder="e.g. Alex Morgan" required />
+            </label>
+
+            <label class="checkout-field">
+              <span class="field-label">Phone Number</span>
+              <input type="tel" id="shipPhone" placeholder="For delivery updates" required />
+            </label>
+          </div>
+
+          <label class="checkout-field full-width">
+            <span class="field-label">Delivery Address</span>
+            <input type="text" id="shipAddress" placeholder="Street address, apartment or flat number" required />
+          </label>
+
+          <div class="checkout-form-grid">
+            <label class="checkout-field">
+              <span class="field-label">City</span>
+              <input type="text" id="shipCity" placeholder="City" required />
+            </label>
+
+            <label class="checkout-field">
+              <span class="field-label">PIN Code</span>
+              <input type="text" id="shipPin" placeholder="PIN code" required />
+            </label>
+          </div>
+
+          <!-- Payment Options -->
+          <div class="checkout-payment-group">
+            <span class="field-label">Payment Method</span>
+            <div class="payment-options">
+              <label class="payment-option selected">
+                <input type="radio" name="paymentMethod" value="cod" checked />
+                <span class="payment-text">
+                  <strong>Cash / UPI on Delivery</strong>
+                  <small>Pay safely when your package arrives at your door</small>
+                </span>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="online" />
+                <span class="payment-text">
+                  <strong>UPI / Credit / Debit Card</strong>
+                  <small>Instant encrypted payment</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Order Summary Line -->
+          <div class="checkout-order-total-bar">
+            <span>Total Payable:</span>
+            <strong id="modalCheckoutTotal">₹2,148</strong>
+          </div>
+
+          <button type="submit" class="btn-place-order" id="placeOrderSubmitBtn">
+            Place Order • Wag Guarantee
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: Order Placed Success Screen -->
+      <div id="checkoutSuccessStep" hidden>
+        <div class="order-success-view">
+          <div class="success-icon-badge">🎉</div>
+          <h2 class="success-title">Order Placed Successfully!</h2>
+          <p class="success-order-id">Order ID: <strong id="successOrderId">#BKF-84920</strong></p>
+          <p class="success-desc">
+            Thank you <strong id="successCustomerName">Pet Parent</strong>! We’re preparing your fresh items. You’ll receive an SMS update once your package is out for delivery.
+          </p>
+
+          <div class="success-guarantee-note">
+            <span>🛡️ Covered by the Barkfy 30-Day 100% Wag Guarantee</span>
+          </div>
+
+          <a href="categories.html" class="button button-lime success-continue-btn" id="successContinueBtn">
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       ACCOUNT DRAWER (Matching uploaded design exactly)
+       ========================================================= -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <aside class="account-drawer" id="accountDrawer" aria-hidden="true">
+
+    <!-- When user is NOT signed in -->
+    <div class="logged-out-view" id="loggedOutView">
+      <button class="drawer-close" id="drawerCloseLoggedOut" aria-label="Close menu">×</button>
+      <div class="logged-out-inner">
+        <div class="logged-out-icon">🐾</div>
+        <h3 class="logged-out-title">Welcome to BARKFY</h3>
+        <p class="logged-out-sub">Sign in to manage orders, track deliveries and pet details.</p>
+        <button class="signin-button" id="drawerSignIn" type="button">Sign In</button>
+        <button class="signup-link-btn" id="drawerSignUp" type="button">Create an account</button>
+      </div>
+    </div>
+
+    <!-- When user IS signed in -->
+    <div class="logged-in-view" id="loggedInView" hidden>
+
+      <div class="profile-header">
+        <div class="profile-avatar" id="profileAvatar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="profile-info">
+          <h3 id="profileName">[Your name]</h3>
+          <p id="profileEmail">[you@example.com]</p>
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">×</button>
+      </div>
+
+      <div class="drawer-section">
+        <h4 class="drawer-section-heading">MANAGE ORDERS</h4>
+        <nav class="drawer-nav">
+          <a class="drawer-link" href="my-account.html" data-page="my-account">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>My account</span>
+          </a>
+          <a class="drawer-link" href="orders.html" data-page="orders">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="21 8 21 21 3 21 3 8"></polyline>
+              <rect x="1" y="3" width="22" height="5"></rect>
+              <line x1="10" y1="12" x2="14" y2="12"></line>
+            </svg>
+            <span>Orders</span>
+          </a>
+          <a class="drawer-link" href="track-order.html" data-page="track-order">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            <span>Track my order</span>
+          </a>
+          <a class="drawer-link" href="order-history.html" data-page="order-history">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Order history</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="drawer-section">
+        <h4 class="drawer-section-heading">HELP AND POLICIES</h4>
+        <nav class="drawer-nav">
+          <a class="drawer-link" href="#privacy">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>Privacy</span>
+          </a>
+          <a class="drawer-link" href="#contact">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Help and support</span>
+          </a>
+          <a class="drawer-link" href="#contact">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span>FAQ</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="drawer-footer">
+        <button class="logout-button" id="logoutButton" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Log out</span>
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div class="site-toast" id="siteToast" role="status" aria-live="polite"></div>
+
+  <script src="cart.js"></script>
+</body>
+</html>
