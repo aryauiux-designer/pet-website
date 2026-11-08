@@ -12,27 +12,8 @@
 
 const CART_STORAGE_KEY = "barkfy_cart_items";
 
-// Default items matching user's design reference exactly
-const DEFAULT_CART_ITEMS = [
-  {
-    id: "collar",
-    name: "Lavender collar",
-    variant: "Size M",
-    price: 599,
-    qty: 1,
-    image: "images/category/collar.png",
-    link: "product-details.html?id=collar"
-  },
-  {
-    id: "food",
-    name: "EverPaw complete dog food",
-    variant: "Chicken recipe",
-    price: 1549,
-    qty: 1,
-    image: "images/category/food.png",
-    link: "product-details.html?id=food"
-  }
-];
+// Default items: Cart starts completely empty for all visitors until they add products
+const DEFAULT_CART_ITEMS = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   let appliedDiscountRate = 0; // e.g. 0.10 for 10%
@@ -53,15 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function getCartItems() {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
-      // KEY FIX: check stored !== null (not truthy length) so empty [] is preserved
       if (stored !== null) {
         const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) return parsed; // allows empty []
+        if (Array.isArray(parsed)) return parsed;
       }
     } catch (e) {}
-    // Only on a completely fresh visit with no localStorage key at all:
-    saveCartItems(DEFAULT_CART_ITEMS);
-    return [...DEFAULT_CART_ITEMS];
+    return [];
   }
 
   function saveCartItems(items) {

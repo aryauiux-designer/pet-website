@@ -426,10 +426,13 @@ window.openBarkfyAuth = openBarkfyAuth;
 function syncCartBadge() {
   try {
     const raw = localStorage.getItem("barkfy_cart_items");
-    if (!raw) return;
-    const cart = JSON.parse(raw);
-    if (!Array.isArray(cart)) return;
-    const count = cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
+    let count = 0;
+    if (raw) {
+      const cart = JSON.parse(raw);
+      if (Array.isArray(cart)) {
+        count = cart.reduce(function (sum, item) { return sum + (item.qty || 1); }, 0);
+      }
+    }
     document.querySelectorAll("#headerCartCount, .cart-badge-count").forEach(function (el) {
       el.textContent = count > 0 ? count : "";
     });
