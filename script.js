@@ -766,7 +766,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$18.00",
     discount: "Save 22%",
     rating: "4.9 (142 reviews)",
-    image: "images/products/ball.jpg",
+    image: "images/products/ball.png",
     desc: "Handcrafted with textured plush wool and a gentle non-toxic core. Built-in squeaker entertains for hours without harsh squeaks, keeping your pup happily engaged and mentally sharp.",
     highlights: ["BPA & Phthalate Free", "Reinforced Seams", "Gentle on Teeth", "Machine Washable"]
   },
@@ -778,7 +778,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$30.00",
     discount: "Save 20%",
     rating: "5.0 (96 reviews)",
-    image: "images/products/collar.jpg",
+    image: "images/products/collar.png",
     desc: "Buttery-soft vegetable-tanned leather paired with solid brass hardware and an engraved Barkfy charm. Designed with smooth rounded edges to protect sensitive fur and necks.",
     highlights: ["Full-Grain Leather", "Solid Brass Buckle", "All-Weather Coated", "Custom Charm Ring"]
   },
@@ -790,7 +790,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$42.00",
     discount: "Save 19%",
     rating: "4.9 (210 reviews)",
-    image: "images/products/food.jpg",
+    image: "images/products/food.png",
     desc: "Slow-baked kibble and freeze-dried raw treats formulated with free-range chicken, probiotics, and wild-harvested herbs. Formulated by veterinary nutritionists for gut health and shiny coats.",
     highlights: ["Real Free-Range Chicken", "Zero Fillers or By-Products", "Probiotics & Prebiotics", "Vet Board Certified"]
   },
@@ -802,7 +802,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$22.00",
     discount: "Save 18%",
     rating: "4.8 (88 reviews)",
-    image: "images/products/loopy.jpg",
+    image: "images/products/loopy.png",
     desc: "No-rinse, hypoallergenic foaming cleanser infused with lavender, chamomile, and colloidal oatmeal. Cleans muddy paws and coats instantly while moisturizing delicate puppy skin.",
     highlights: ["Tear-Free Formula", "No Rinsing Needed", "Natural Lavender Oil", "Sensitive Skin Safe"]
   },
@@ -814,7 +814,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$68.00",
     discount: "Save 24%",
     rating: "5.0 (175 reviews)",
-    image: "images/products/combo.jpg",
+    image: "images/products/combo.png",
     desc: "The complete daily wellness kit: Skin & Coat Omega drops, Calming chews, Joint Mobility powder, and Gut Immunity bites. Everything you need to keep your dog thriving from puppy to senior years.",
     highlights: ["6 Targeted Supplements", "Omega-3 & Glucosamine", "Cold-Pressed Ingredients", "Tasty Bacon Flavor"]
   },
@@ -826,7 +826,7 @@ const SHOWCASE_PRODUCTS = {
     oldPrice: "$75.00",
     discount: "Save 23%",
     rating: "4.9 (164 reviews)",
-    image: "images/products/bed.jpg",
+    image: "images/products/bed.png",
     desc: "High-density orthopedic memory foam with bolstered side pillows and a breathable ticking-stripe canvas cover. Relieves joint pressure and gives anxious dogs a secure nesting haven.",
     highlights: ["Memory Foam Core", "Bolstered Support Walls", "Removable Washable Cover", "Non-Skid Rubber Base"]
   }
@@ -865,6 +865,10 @@ const SHOWCASE_PRODUCTS = {
 
     // Populate data
     if (modalImg) {
+      modalImg.onerror = function() {
+        this.onerror = null;
+        this.src = "images/category/" + prod.id + ".png";
+      };
       modalImg.src = prod.image;
       modalImg.alt = prod.name;
     }

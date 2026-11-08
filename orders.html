@@ -11,6 +11,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <style>
+    .empty-orders-wrap {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 56px 24px;
+      text-align: center;
+      margin: 12px 0;
+      border: 1.5px dashed #D3D8E8;
+    }
+    .empty-orders-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .empty-orders-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0C1031;
+      margin: 0 0 8px;
+    }
+    .empty-orders-desc {
+      font-size: 14.5px;
+      color: #5C627E;
+      margin: 0 auto 24px;
+      max-width: 380px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
 
@@ -62,41 +90,15 @@
       </div>
 
       <!-- Orders List -->
-      <div class="orders-list-wrap">
+      <div class="orders-list-wrap" id="activeOrdersList">
 
-        <!-- Order 1: Shipped -->
-        <article class="order-card-item">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-1042</span>
-              <span class="order-status-badge shipped">Shipped</span>
-            </div>
-            <p class="order-date">Placed 4 Nov 2026</p>
-            <p class="order-items-desc">EverPaw complete dog food, Lavender collar</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹2,148</span>
-            <a href="track-order.html?id=BK-1042" class="btn-track-order">Track order</a>
-          </div>
-        </article>
-
-        <!-- Order 2: Processing -->
-        <article class="order-card-item">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-1039</span>
-              <span class="order-status-badge processing">Processing</span>
-            </div>
-            <p class="order-date">Placed 3 Nov 2026</p>
-            <p class="order-items-desc">Loopy pet shampoo</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹649</span>
-            <a href="track-order.html?id=BK-1039" class="btn-track-order">Track order</a>
-          </div>
-        </article>
+        <!-- Empty state (shown when user has not ordered yet) -->
+        <div class="empty-orders-wrap" id="emptyOrdersState" hidden>
+          <div class="empty-orders-icon">📦</div>
+          <h3 class="empty-orders-title">No active orders</h3>
+          <p class="empty-orders-desc">You don't have any orders in transit right now. Discover treats, food and essentials for your pet!</p>
+          <a href="categories.html" class="button button-lime" style="display:inline-flex; text-decoration:none;">Shop Now</a>
+        </div>
 
       </div>
 
@@ -289,40 +291,71 @@
 
   <script src="script.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const wrap = document.querySelector(".orders-list-wrap");
+    function loadActiveOrders() {
+      const wrap = document.getElementById("activeOrdersList");
+      const emptyState = document.getElementById("emptyOrdersState");
       if (!wrap) return;
+
+      let currentUser = null;
       try {
-        const stored = JSON.parse(localStorage.getItem("barkfy_orders") || "[]");
-        if (stored.length > 0) {
-          stored.forEach(o => {
-            const itemsText = (o.items && o.items.length)
-              ? o.items.map(i => `${i.name} (×${i.qty || 1})`).join(", ")
-              : "Barkfy package";
-            const dateStr = o.createdAt
-              ? "Placed " + new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
-              : "Placed recently";
-            const card = document.createElement("article");
-            card.className = "order-card-item";
-            card.innerHTML = `
-              <div class="order-card-left">
-                <div class="order-card-head">
-                  <span class="order-num">#${o.id}</span>
-                  <span class="order-status-badge processing">${o.status || "Processing"}</span>
-                </div>
-                <p class="order-date">${dateStr}</p>
-                <p class="order-items-desc">${itemsText}</p>
-              </div>
-              <div class="order-card-right">
-                <span class="order-card-price">${o.total || "₹0"}</span>
-                <a href="track-order.html?id=${o.id}" class="btn-track-order">Track order</a>
-              </div>
-            `;
-            wrap.prepend(card);
-          });
-        }
-      } catch(e) {}
-    });
+        const raw = localStorage.getItem("barkfySession") || sessionStorage.getItem("barkfySession");
+        if (raw) currentUser = JSON.parse(raw)?.user;
+      } catch (e) {}
+
+      let allOrders = [];
+      try {
+        allOrders = JSON.parse(localStorage.getItem("barkfy_orders") || "[]");
+      } catch (e) {}
+
+      let userOrders = [];
+      if (currentUser && (currentUser.id || currentUser.email)) {
+        userOrders = allOrders.filter(o =>
+          (currentUser.id && o.userId === currentUser.id) ||
+          (currentUser.email && o.userEmail === currentUser.email)
+        );
+      }
+
+      wrap.querySelectorAll(".order-card-item").forEach(el => el.remove());
+
+      if (userOrders.length === 0) {
+        if (emptyState) emptyState.hidden = false;
+        return;
+      }
+
+      if (emptyState) emptyState.hidden = true;
+
+      userOrders.forEach(o => {
+        const rawStatus = (o.status || "Processing").toLowerCase();
+        const statusBadgeClass = (rawStatus === "delivered") ? "shipped" : "processing";
+        const itemsText = (o.items && o.items.length)
+          ? o.items.map(i => `${i.name}${i.qty > 1 ? " (×" + i.qty + ")" : ""}`).join(", ")
+          : "Barkfy package";
+        const dateStr = o.createdAt
+          ? "Placed " + new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
+          : "Placed recently";
+
+        const card = document.createElement("article");
+        card.className = "order-card-item";
+        card.innerHTML = `
+          <div class="order-card-left">
+            <div class="order-card-head">
+              <span class="order-num">#${o.id}</span>
+              <span class="order-status-badge ${statusBadgeClass}">${o.status || "Processing"}</span>
+            </div>
+            <p class="order-date">${dateStr}</p>
+            <p class="order-items-desc">${itemsText}</p>
+          </div>
+          <div class="order-card-right">
+            <span class="order-card-price">${o.total || "₹0"}</span>
+            <a href="track-order.html?id=${o.id}" class="btn-track-order">Track order</a>
+          </div>
+        `;
+        wrap.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadActiveOrders);
+    loadActiveOrders();
   </script>
 </body>
 </html>

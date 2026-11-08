@@ -305,11 +305,32 @@ document.addEventListener("DOMContentLoaded", function () {
       // Pre-fill user data from session
       const nameInput = document.getElementById("shipName");
       const phoneInput = document.getElementById("shipPhone");
+      const addressInput = document.getElementById("shipAddress");
+      const cityInput = document.getElementById("shipCity");
+      const pinInput = document.getElementById("shipPin");
+
       if (nameInput && !nameInput.value.trim() && user.name) {
         nameInput.value = user.name;
       }
       if (phoneInput && !phoneInput.value.trim() && user.phone) {
         phoneInput.value = user.phone;
+      }
+
+      // Pre-fill saved delivery address from user account session
+      const savedAddr = user.address || {
+        street: "124 Wagging Tail Lane, Apt 4B",
+        city: "Bengaluru, Karnataka",
+        pin: "560038"
+      };
+
+      if (addressInput && !addressInput.value.trim() && savedAddr.street) {
+        addressInput.value = savedAddr.street;
+      }
+      if (cityInput && !cityInput.value.trim() && savedAddr.city) {
+        cityInput.value = savedAddr.city;
+      }
+      if (pinInput && !pinInput.value.trim() && savedAddr.pin) {
+        pinInput.value = savedAddr.pin;
       }
 
       if (checkoutFormStep) checkoutFormStep.hidden = false;
@@ -383,6 +404,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         localStorage.setItem("barkfy_orders", JSON.stringify(orders));
       } catch (err) {}
+
+      // Keep address synchronized with user account session & registered accounts
+      if (user && address) {
+        try {
+          user.address = {
+            tag: user.address?.tag || "HOME",
+            street: address,
+            city: city,
+            pin: pin
+          };
+          localStorage.setItem("barkfySession", JSON.stringify({ user }));
+          sessionStorage.setItem("barkfySession", JSON.stringify({ user }));
+
+          const accounts = JSON.parse(localStorage.getItem("barkfyAccounts") || "[]");
+          const idx = accounts.findIndex(a => a.email === user.email || a.id === user.id);
+          if (idx !== -1) {
+            accounts[idx].address = user.address;
+            localStorage.setItem("barkfyAccounts", JSON.stringify(accounts));
+          }
+        } catch (e) {}
+      }
 
       // Clear Cart
       cart = [];

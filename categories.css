@@ -84,84 +84,102 @@
 .cat-cards-section {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 32px 60px;
+  padding: 0 32px 64px;
 }
 
 .cat-cards-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .cat-card {
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  border: 1px solid rgba(12,16,49,0.07);
+  border: 1.5px solid rgba(12, 16, 49, 0.08);
   cursor: pointer;
-  transition: transform 0.22s, box-shadow 0.22s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(12, 16, 49, 0.04);
 }
 
 .cat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(12,16,49,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(12, 16, 49, 0.12);
+  border-color: rgba(12, 16, 49, 0.18);
 }
 
 .cat-card.active {
   border-color: #596400;
-  box-shadow: 0 0 0 2px #596400, 0 12px 32px rgba(89, 100, 0, 0.15);
+  box-shadow: 0 0 0 2px #596400, 0 14px 36px rgba(89, 100, 0, 0.16);
   transform: translateY(-4px);
 }
 
 .cat-card.active .cat-card-link {
-  color: #596400;
+  background: #DAEF48;
+  border-color: #DAEF48;
+  color: #0C1031;
   font-weight: 800;
 }
 
 .cat-card-img-wrap {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 18px;
+  box-sizing: border-box;
 }
 
 .cat-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: transform 0.3s;
+  transition: transform 0.35s ease;
 }
 
 .cat-card:hover .cat-card-img {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 .cat-card-body {
-  padding: 14px 16px 18px;
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
 }
 
 .cat-card-title {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   color: #0C1031;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
 }
 
 .cat-card-desc {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: #6F7285;
-  margin: 0 0 10px;
+  margin: 0 0 16px;
   line-height: 1.5;
+  flex: 1;
 }
 
 .cat-card-link {
-  background: none;
-  border: none;
-  padding: 0;
+  background: #FAF9F5;
+  border: 1.5px solid rgba(12, 16, 49, 0.12);
+  padding: 9px 22px;
+  border-radius: 999px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -169,12 +187,20 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  transition: color 0.18s;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  transition: all 0.2s ease;
+  text-decoration: none;
 }
 
-.cat-card-link:hover {
-  color: #596400;
+.cat-card-link:hover,
+.cat-card:hover .cat-card-link {
+  background: #DAEF48;
+  border-color: #DAEF48;
+  color: #0C1031;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(218, 239, 72, 0.35);
 }
 
 /* ============================================================
@@ -265,8 +291,9 @@
 .cat-filter-tabs {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 28px;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
 
@@ -274,47 +301,52 @@
   background: #FFFFFF;
   border: 1.5px solid rgba(12,16,49,0.12);
   border-radius: 999px;
-  padding: 8px 20px;
+  padding: 9px 24px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #6F7285;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  transition: all 0.2s ease;
 }
 
 .cat-tab:hover {
   border-color: #0C1031;
   color: #0C1031;
+  transform: translateY(-1px);
 }
 
 .cat-tab.active {
   background: #0C1031;
   border-color: #0C1031;
   color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(12, 16, 49, 0.15);
 }
 
 /* ── Products grid ── */
 .cat-products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 
 /* Regular product card */
 .cat-product-card {
   background: #FFFFFF;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(12,16,49,0.07);
-  transition: transform 0.22s, box-shadow 0.22s;
+  border: 1.5px solid rgba(12, 16, 49, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 16px rgba(12, 16, 49, 0.03);
 }
 
 .cat-product-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(12,16,49,0.09);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(12, 16, 49, 0.1);
 }
 
 .cat-product-card.hidden {
@@ -332,14 +364,15 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(255,255,255,0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   font-size: 11px;
   font-weight: 700;
   color: #0C1031;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
   z-index: 1;
+  box-shadow: 0 2px 8px rgba(12, 16, 49, 0.06);
 }
 
 .cat-product-img {
@@ -347,47 +380,58 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  padding: 12px;
+  padding: 16px;
   box-sizing: border-box;
-  transition: transform 0.3s;
+  transition: transform 0.35s ease;
 }
 
 .cat-product-card:hover .cat-product-img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .cat-product-info {
-  padding: 14px 16px 18px;
+  padding: 18px 20px 22px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .cat-product-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #0C1031;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   line-height: 1.35;
+}
+
+.cat-product-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.cat-product-name a:hover {
+  color: #596400;
 }
 
 .cat-product-desc {
   font-size: 13px;
   color: #9397AE;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   flex: 1;
+  line-height: 1.5;
 }
 
 .cat-product-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .cat-product-price {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
   color: #0C1031;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -398,18 +442,22 @@
   color: #0C1031;
   border: none;
   border-radius: 999px;
-  padding: 9px 18px;
+  padding: 10px 20px;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.18s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
 }
 
 .cat-add-btn:hover {
   background: #E4F754;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(218, 239, 72, 0.4);
 }
 
 /* ── Grooming CTA card ── */
@@ -488,19 +536,11 @@
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 1100px) {
+@media (max-width: 1040px) {
   .cat-cards-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .cat-products-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .cat-cards-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(220px, 340px));
+    gap: 20px;
+    justify-content: center;
   }
 
   .cat-products-grid {
@@ -508,7 +548,7 @@
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .cat-cards-section,
   .cat-products-section {
     padding-inline: 16px;
@@ -520,7 +560,8 @@
   }
 
   .cat-cards-row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(220px, 340px);
+    justify-content: center;
   }
 
   .cat-products-grid {

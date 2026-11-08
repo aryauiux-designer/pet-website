@@ -91,6 +91,21 @@
       padding: 32px 0;
     }
     .acct-no-sessions-msg a { color: #5C67BA; font-weight: 600; text-decoration: none; }
+    .btn-address-cancel {
+      background: transparent;
+      border: 1.5px solid #0C1031;
+      color: #0C1031;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-family: Outfit, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-address-cancel:hover {
+      background: #F4F5FB;
+    }
   </style>
 </head>
 <body>
@@ -195,18 +210,50 @@
         <div class="acct-card acct-delivery-card">
           <h3>Delivery address</h3>
 
-          <div class="address-box">
-            <div class="address-box-tag">HOME</div>
-            <p class="address-box-text">
-              <strong>[Street address]</strong><br>
-              124 Wagging Tail Lane, Apt 4B<br>
-              <strong>[City, State, PIN]</strong><br>
+          <!-- View Mode -->
+          <div class="address-box" id="addressDisplayBox">
+            <div class="address-box-tag" id="addrTagDisplay">HOME</div>
+            <p class="address-box-text" id="addrTextDisplay">
+              <strong>124 Wagging Tail Lane, Apt 4B</strong><br>
               Bengaluru, Karnataka 560038
             </p>
           </div>
 
-          <button type="button" class="btn-address-action solid" id="btnEditAddress">Edit address</button>
-          <button type="button" class="btn-address-action dashed" id="btnAddAddress">Add a new address</button>
+          <div id="addressActionButtons">
+            <button type="button" class="btn-address-action solid" id="btnEditAddress">Edit address</button>
+            <button type="button" class="btn-address-action dashed" id="btnAddAddress">Add a new address</button>
+          </div>
+
+          <!-- Edit Mode Form (Hidden by default) -->
+          <form id="acctAddressForm" class="acct-address-form" hidden>
+            <div class="acct-form-grid" style="grid-template-columns: 1fr; gap: 12px;">
+              <div class="acct-form-field">
+                <label for="addrTagInput">Address Label</label>
+                <select id="addrTagInput" class="acct-input">
+                  <option value="HOME">HOME</option>
+                  <option value="WORK">WORK</option>
+                  <option value="STUDIO">STUDIO</option>
+                  <option value="OTHER">OTHER</option>
+                </select>
+              </div>
+              <div class="acct-form-field">
+                <label for="addrStreetInput">Street address / Flat number</label>
+                <input type="text" id="addrStreetInput" class="acct-input" placeholder="e.g. 124 Wagging Tail Lane, Apt 4B" required />
+              </div>
+              <div class="acct-form-field">
+                <label for="addrCityInput">City &amp; State</label>
+                <input type="text" id="addrCityInput" class="acct-input" placeholder="e.g. Bengaluru, Karnataka" required />
+              </div>
+              <div class="acct-form-field">
+                <label for="addrPinInput">PIN Code</label>
+                <input type="text" id="addrPinInput" class="acct-input" placeholder="e.g. 560038" required />
+              </div>
+            </div>
+            <div class="acct-form-actions" style="margin-top: 18px; display: flex; gap: 10px;">
+              <button type="submit" class="btn-save-acct" id="btnSaveAddress">Save address</button>
+              <button type="button" class="btn-address-cancel" id="btnCancelAddress">Cancel</button>
+            </div>
+          </form>
         </div>
 
       </div>
@@ -441,11 +488,108 @@
           avatarEl.innerHTML = `<span style="font-size: 24px; font-weight: 700; color: #5C67BA;">${user.name.trim().charAt(0).toUpperCase()}</span>`;
         }
       }
+
+      // Populate delivery address
+      const defaultAddr = {
+        tag: "HOME",
+        street: "124 Wagging Tail Lane, Apt 4B",
+        city: "Bengaluru, Karnataka",
+        pin: "560038"
+      };
+      const userAddr = user?.address || defaultAddr;
+      const tagDisplay = document.getElementById("addrTagDisplay");
+      const textDisplay = document.getElementById("addrTextDisplay");
+      if (tagDisplay) tagDisplay.textContent = userAddr.tag || "HOME";
+      if (textDisplay) {
+        textDisplay.innerHTML = `<strong>${userAddr.street || "Add your street address"}</strong><br>${userAddr.city || ""}${userAddr.pin ? " " + userAddr.pin : ""}`;
+      }
+
+      const tagInput = document.getElementById("addrTagInput");
+      const streetInput = document.getElementById("addrStreetInput");
+      const cityInput = document.getElementById("addrCityInput");
+      const pinInput = document.getElementById("addrPinInput");
+      if (tagInput) tagInput.value = userAddr.tag || "HOME";
+      if (streetInput) streetInput.value = userAddr.street || "";
+      if (cityInput) cityInput.value = userAddr.city || "";
+      if (pinInput) pinInput.value = userAddr.pin || "";
     }
 
     window.populateMyAccount = populateMyAccount;
     document.addEventListener("DOMContentLoaded", populateMyAccount);
     populateMyAccount();
+
+    // Delivery address edit / add / cancel handlers
+    document.getElementById("btnEditAddress")?.addEventListener("click", function() {
+      document.getElementById("addressDisplayBox").hidden = true;
+      document.getElementById("addressActionButtons").hidden = true;
+      document.getElementById("acctAddressForm").hidden = false;
+      document.getElementById("addrStreetInput")?.focus();
+    });
+
+    document.getElementById("btnAddAddress")?.addEventListener("click", function() {
+      const streetInput = document.getElementById("addrStreetInput");
+      const cityInput = document.getElementById("addrCityInput");
+      const pinInput = document.getElementById("addrPinInput");
+      if (streetInput) streetInput.value = "";
+      if (cityInput) cityInput.value = "";
+      if (pinInput) pinInput.value = "";
+      document.getElementById("addressDisplayBox").hidden = true;
+      document.getElementById("addressActionButtons").hidden = true;
+      document.getElementById("acctAddressForm").hidden = false;
+      streetInput?.focus();
+    });
+
+    document.getElementById("btnCancelAddress")?.addEventListener("click", function() {
+      document.getElementById("acctAddressForm").hidden = true;
+      document.getElementById("addressDisplayBox").hidden = false;
+      document.getElementById("addressActionButtons").hidden = false;
+    });
+
+    // Save Delivery Address
+    document.getElementById("acctAddressForm")?.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const tag = document.getElementById("addrTagInput")?.value || "HOME";
+      const street = document.getElementById("addrStreetInput")?.value.trim() || "";
+      const city = document.getElementById("addrCityInput")?.value.trim() || "";
+      const pin = document.getElementById("addrPinInput")?.value.trim() || "";
+
+      let sessionUser = {};
+      try {
+        const raw = localStorage.getItem("barkfySession") || sessionStorage.getItem("barkfySession");
+        if (raw) sessionUser = JSON.parse(raw)?.user || {};
+      } catch (err) {}
+
+      sessionUser.address = { tag, street, city, pin };
+
+      // Save to localStorage & sessionStorage
+      try {
+        localStorage.setItem("barkfySession", JSON.stringify({ user: sessionUser }));
+        sessionStorage.setItem("barkfySession", JSON.stringify({ user: sessionUser }));
+      } catch (err) {}
+
+      // Update in barkfyAccounts list
+      try {
+        const accounts = JSON.parse(localStorage.getItem("barkfyAccounts") || "[]");
+        const idx = accounts.findIndex(a => a.email === sessionUser.email || (sessionUser.id && a.id === sessionUser.id));
+        if (idx >= 0) {
+          accounts[idx] = Object.assign(accounts[idx], sessionUser);
+        } else if (sessionUser.email) {
+          accounts.push(sessionUser);
+        }
+        localStorage.setItem("barkfyAccounts", JSON.stringify(accounts));
+      } catch (err) {}
+
+      // Toggle back to display mode
+      document.getElementById("acctAddressForm").hidden = true;
+      document.getElementById("addressDisplayBox").hidden = false;
+      document.getElementById("addressActionButtons").hidden = false;
+
+      populateMyAccount();
+
+      if (typeof showBarkfyMessage === "function") {
+        showBarkfyMessage("Delivery address updated successfully! 🏡🐾");
+      }
+    });
 
     // Page-specific form submit handler (updates localStorage and accounts)
     document.getElementById("acctProfileForm")?.addEventListener("submit", function(e) {

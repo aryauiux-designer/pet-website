@@ -11,6 +11,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <style>
+    .empty-orders-wrap {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 56px 24px;
+      text-align: center;
+      margin: 12px 0;
+      border: 1.5px dashed #D3D8E8;
+    }
+    .empty-orders-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .empty-orders-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0C1031;
+      margin: 0 0 8px;
+    }
+    .empty-orders-desc {
+      font-size: 14.5px;
+      color: #5C627E;
+      margin: 0 auto 24px;
+      max-width: 380px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
 
@@ -74,77 +102,13 @@
       <!-- History Items List -->
       <div class="orders-list-wrap" id="historyList">
 
-        <!-- History 1 -->
-        <article class="order-card-item" data-status="delivered">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-0988</span>
-              <span class="order-status-badge delivered">Delivered</span>
-            </div>
-            <p class="order-date">18 Oct 2026</p>
-            <p class="order-items-desc">Plush toy ball, Chew toy</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹798</span>
-            <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #BK-0988... 📄');">Invoice</a>
-            <button type="button" class="btn-reorder" onclick="showBarkfyMessage('Added items from #BK-0988 to cart! 🐾');">Reorder</button>
-          </div>
-        </article>
-
-        <!-- History 2 -->
-        <article class="order-card-item" data-status="delivered">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-0951</span>
-              <span class="order-status-badge delivered">Delivered</span>
-            </div>
-            <p class="order-date">2 Oct 2026</p>
-            <p class="order-items-desc">EverPaw dog treats</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹449</span>
-            <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #BK-0951... 📄');">Invoice</a>
-            <button type="button" class="btn-reorder" onclick="showBarkfyMessage('Added items from #BK-0951 to cart! 🐾');">Reorder</button>
-          </div>
-        </article>
-
-        <!-- History 3 -->
-        <article class="order-card-item" data-status="delivered">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-0902</span>
-              <span class="order-status-badge delivered">Delivered</span>
-            </div>
-            <p class="order-date">14 Sep 2026</p>
-            <p class="order-items-desc">Cozy striped dog bed</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹1,899</span>
-            <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #BK-0902... 📄');">Invoice</a>
-            <button type="button" class="btn-reorder" onclick="showBarkfyMessage('Added items from #BK-0902 to cart! 🐾');">Reorder</button>
-          </div>
-        </article>
-
-        <!-- History 4 -->
-        <article class="order-card-item" data-status="cancelled">
-          <div class="order-card-left">
-            <div class="order-card-head">
-              <span class="order-num">#BK-0870</span>
-              <span class="order-status-badge cancelled">Cancelled</span>
-            </div>
-            <p class="order-date">29 Aug 2026</p>
-            <p class="order-items-desc">Lavender collar</p>
-          </div>
-
-          <div class="order-card-right">
-            <span class="order-card-price">₹599</span>
-            <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #BK-0870... 📄');">Invoice</a>
-            <button type="button" class="btn-reorder" onclick="showBarkfyMessage('Added Lavender collar to cart! 🐾');">Reorder</button>
-          </div>
-        </article>
+        <!-- Empty state (shown when user has not ordered yet) -->
+        <div class="empty-orders-wrap" id="emptyHistoryState" hidden>
+          <div class="empty-orders-icon">📦</div>
+          <h3 class="empty-orders-title">No orders found</h3>
+          <p class="empty-orders-desc">You haven't placed any orders yet. Discover our collection of pet food, toys and accessories!</p>
+          <a href="categories.html" class="button button-lime" style="display:inline-flex; text-decoration:none;">Start shopping</a>
+        </div>
 
       </div>
 
@@ -337,50 +301,106 @@
 
   <script src="script.js"></script>
   <script>
-    // Load persisted orders
-    try {
-      const stored = JSON.parse(localStorage.getItem("barkfy_orders") || "[]");
+    function loadOrderHistory() {
       const list = document.getElementById("historyList");
-      if (list && stored.length > 0) {
-        stored.forEach(o => {
-          const itemsText = (o.items && o.items.length)
-            ? o.items.map(i => `${i.name} (×${i.qty || 1})`).join(", ")
-            : "Barkfy package";
-          const dateStr = o.createdAt
-            ? new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
-            : "Recently";
-          const card = document.createElement("article");
-          card.className = "order-card-item";
-          card.dataset.status = "processing";
-          card.innerHTML = `
-            <div class="order-card-left">
-              <div class="order-card-head">
-                <span class="order-num">#${o.id}</span>
-                <span class="order-status-badge processing">${o.status || "Processing"}</span>
-              </div>
-              <p class="order-date">${dateStr}</p>
-              <p class="order-items-desc">${itemsText}</p>
-            </div>
-            <div class="order-card-right">
-              <span class="order-card-price">${o.total || "₹0"}</span>
-              <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #${o.id}... 📄');">Invoice</a>
-            </div>
-          `;
-          list.prepend(card);
-        });
+      const emptyState = document.getElementById("emptyHistoryState");
+      if (!list) return;
+
+      // Get current logged-in user
+      let currentUser = null;
+      try {
+        const raw = localStorage.getItem("barkfySession") || sessionStorage.getItem("barkfySession");
+        if (raw) currentUser = JSON.parse(raw)?.user;
+      } catch (e) {}
+
+      let allOrders = [];
+      try {
+        allOrders = JSON.parse(localStorage.getItem("barkfy_orders") || "[]");
+      } catch (e) {}
+
+      // Filter ONLY orders belonging to this user
+      let userOrders = [];
+      if (currentUser && (currentUser.id || currentUser.email)) {
+        userOrders = allOrders.filter(o =>
+          (currentUser.id && o.userId === currentUser.id) ||
+          (currentUser.email && o.userEmail === currentUser.email)
+        );
       }
-    } catch(e) {}
+
+      // Remove any existing order cards
+      list.querySelectorAll(".order-card-item").forEach(el => el.remove());
+
+      if (userOrders.length === 0) {
+        if (emptyState) emptyState.hidden = false;
+        return;
+      }
+
+      if (emptyState) emptyState.hidden = true;
+
+      userOrders.forEach(o => {
+        const rawStatus = (o.status || "Processing").toLowerCase();
+        const statusBadgeClass = (rawStatus === "delivered") ? "delivered" : (rawStatus === "cancelled") ? "cancelled" : "processing";
+        const itemsText = (o.items && o.items.length)
+          ? o.items.map(i => `${i.name}${i.qty > 1 ? " (×" + i.qty + ")" : ""}`).join(", ")
+          : "Barkfy pet care package";
+        const dateStr = o.createdAt
+          ? new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
+          : "Recently";
+
+        const card = document.createElement("article");
+        card.className = "order-card-item";
+        card.dataset.status = rawStatus;
+        card.innerHTML = `
+          <div class="order-card-left">
+            <div class="order-card-head">
+              <span class="order-num">#${o.id}</span>
+              <span class="order-status-badge ${statusBadgeClass}">${o.status || "Processing"}</span>
+            </div>
+            <p class="order-date">${dateStr}</p>
+            <p class="order-items-desc">${itemsText}</p>
+          </div>
+          <div class="order-card-right">
+            <span class="order-card-price">${o.total || "₹0"}</span>
+            <a href="#" class="link-invoice" onclick="event.preventDefault(); showBarkfyMessage('Downloading invoice for #${o.id}... 📄');">Invoice</a>
+            <button type="button" class="btn-reorder" onclick="reorderBarkfyItems('${o.id}');">Reorder</button>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    // Helper to reorder items into cart
+    window.reorderBarkfyItems = function(orderId) {
+      try {
+        const orders = JSON.parse(localStorage.getItem("barkfy_orders") || "[]");
+        const order = orders.find(o => o.id === orderId);
+        if (order && order.items) {
+          const cart = JSON.parse(localStorage.getItem("barkfy_cart_items") || "[]");
+          order.items.forEach(item => {
+            const existing = cart.find(c => c.id === item.id);
+            if (existing) {
+              existing.qty += (item.qty || 1);
+            } else {
+              cart.push(Object.assign({}, item));
+            }
+          });
+          localStorage.setItem("barkfy_cart_items", JSON.stringify(cart));
+          if (typeof showBarkfyMessage === "function") {
+            showBarkfyMessage(`Added items from #${orderId} to your cart! 🐾`);
+          }
+        }
+      } catch(e) {}
+    };
 
     // Tab filtering on order history
     const filterButtons = document.querySelectorAll("#historyFilters .history-pill");
-    const historyCards = document.querySelectorAll("#historyList .order-card-item");
-
     filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         filterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         const filter = btn.dataset.filter;
 
+        const historyCards = document.querySelectorAll("#historyList .order-card-item");
         historyCards.forEach(card => {
           if (filter === "all" || card.dataset.status === filter) {
             card.style.display = "flex";
@@ -390,6 +410,9 @@
         });
       });
     });
+
+    document.addEventListener("DOMContentLoaded", loadOrderHistory);
+    loadOrderHistory();
   </script>
 </body>
 </html>

@@ -260,7 +260,9 @@
 
 /* Continue Shopping Link */
 .continue-shopping-wrap {
-  margin-top: 12px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .continue-shopping-link {
@@ -270,13 +272,21 @@
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: color 0.18s, transform 0.18s;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(12, 16, 49, 0.12);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(12, 16, 49, 0.04);
 }
 
 .continue-shopping-link:hover {
-  color: #596400;
-  transform: translateX(-3px);
+  background: #DAEF48;
+  border-color: #DAEF48;
+  color: #0C1031;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 12px rgba(218, 239, 72, 0.3);
 }
 
 /* ── Right Column: Order Summary Card ── */
@@ -507,10 +517,16 @@
 }
 
 .empty-cart-btn {
-  display: inline-block;
-  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   padding: 0 32px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* ============================================================
@@ -1004,9 +1020,14 @@
 }
 
 .success-continue-btn {
-  display: inline-block;
-  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   padding: 0 32px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
