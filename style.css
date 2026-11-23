@@ -80,11 +80,12 @@ a {
   height: 36px;
   border: 0;
   padding: 5px 0;
-  display: flex;
+  display: none; /* Desktop: Remove the burger icon */
   flex-direction: column;
   justify-content: center;
   gap: 7px;
   background: transparent;
+  cursor: pointer;
 }
 
 .burger span {
@@ -108,7 +109,7 @@ a {
 }
 
 .brand {
-  margin-left: 39px;
+  margin-left: 0;
   font-family: var(--font-ui);
   font-size: 28px;
   line-height: 1;
@@ -228,6 +229,134 @@ a {
 .header-shop {
   min-width: 143px;
   min-height: 45px;
+}
+
+/* ── Desktop Header Auth Controls ── */
+.header-auth-logged-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-auth-logged-out[hidden],
+.header-auth-logged-in[hidden] {
+  display: none !important;
+}
+
+.header-signup-link {
+  background: transparent;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 8px 4px;
+  line-height: 1;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.header-signup-link:hover {
+  opacity: 0.75;
+  color: var(--olive);
+}
+
+.header-signin-btn {
+  min-height: 42px;
+  padding: 0 22px;
+  border-radius: 28px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.header-signin-btn:hover {
+  background: var(--ink);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(12, 16, 49, 0.14);
+}
+
+.header-auth-logged-in {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-avatar-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #E5E7FB;
+  border: 2px solid transparent;
+  color: #5C67BA;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-avatar-btn:hover {
+  transform: translateY(-1px);
+  border-color: #5C67BA;
+  box-shadow: 0 4px 12px rgba(92, 103, 186, 0.25);
+}
+
+.header-avatar-btn[aria-expanded="true"] {
+  border-color: #5C67BA;
+  box-shadow: 0 0 0 3px rgba(92, 103, 186, 0.2);
+}
+
+/* ── Header Account Dropdown ── */
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 290px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(12, 16, 49, 0.18), 0 4px 14px rgba(12, 16, 49, 0.08);
+  border: 1px solid rgba(12, 16, 49, 0.08);
+  padding: 16px 14px 18px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.22s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.account-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.account-dropdown .profile-header {
+  border-bottom: 1px solid #F0F1F7;
+  padding-bottom: 12px;
+  margin-bottom: 2px;
 }
 
 .menu-panel {
@@ -431,7 +560,7 @@ h1 em {
 /* White inner disk leaves the outer lavender band visible. */
 .circle-center {
   position: absolute;
-  inset: 10.3%;
+  inset: 6%;
   z-index: 1;
   border: 2px solid #e0e4f0;
   border-radius: 50%;
@@ -623,9 +752,10 @@ h1 em {
 .curved-copy text {
   fill: var(--ink);
   font-family: var(--font-ui);
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  dominant-baseline: central;
 }
 
 /* FLOATING NOTES */
@@ -870,6 +1000,10 @@ h1 em {
     height: 84px;
   }
 
+  .burger {
+    display: flex;
+  }
+
   .header-left {
     min-width: auto;
   }
@@ -885,6 +1019,11 @@ h1 em {
 
   .header-right {
     gap: 14px;
+  }
+
+  .header-auth-logged-out,
+  .header-auth-logged-in {
+    display: none !important;
   }
 
   .header-shop {

@@ -311,11 +311,96 @@
       display: grid;
       grid-template-columns: 1fr 1.6fr;
       gap: 60px;
-      align-items: start;
+      align-items: center;
     }
-    .svc-form-left .svc-heading { font-size: clamp(1.6rem, 3vw, 2.3rem); }
-    .svc-no-commitment { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #555; margin-top: 20px; }
+    .svc-form-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .svc-form-left .svc-badge {
+      align-self: flex-start;
+      margin-bottom: 14px;
+    }
+    .svc-form-left .svc-heading {
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      line-height: 1.15;
+      margin: 0 0 10px;
+    }
+    .svc-form-left .svc-sub {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+      margin: 0 0 14px;
+    }
+    .svc-no-commitment {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #444;
+      margin: 0 0 22px;
+    }
     .svc-no-commitment::before { content: "🐾"; }
+    .svc-direct-contact {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .svc-contact-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #687190;
+      margin: 0 0 4px;
+    }
+    .svc-direct-contact .contact-info-pill {
+      background: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(12, 16, 49, 0.08);
+      box-shadow: 0 2px 8px rgba(12, 16, 49, 0.04);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .svc-direct-contact .contact-info-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(12, 16, 49, 0.08);
+    }
+    .svc-direct-contact .info-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #EEF0FA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #596400;
+      flex-shrink: 0;
+    }
+    .svc-direct-contact .info-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .svc-direct-contact .info-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: #888;
+    }
+    .svc-direct-contact .info-value {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0C1031;
+    }
     .svc-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .svc-form-field { display: flex; flex-direction: column; gap: 6px; }
     .svc-form-field.full { grid-column: 1 / -1; }
@@ -620,7 +705,49 @@
         <span class="svc-badge">book your service</span>
         <h2 class="svc-heading">Book your <em>free trial.</em></h2>
         <p class="svc-sub">Pick a slot and we'll pair you with a groomer that suits your pet.</p>
-        <p class="svc-no-commitment">No long-term commitment</p>
+        <p class="svc-no-commitment">No long-term commitment • 100% Free first session</p>
+
+        <!-- Direct Contact Info Card -->
+        <div class="svc-direct-contact">
+          <h4 class="svc-contact-heading">Need help or prefer booking over phone?</h4>
+          <div class="contact-info-pill">
+            <div class="info-icon-circle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="info-text">
+              <span class="info-label">Call or WhatsApp</span>
+              <a href="tel:+919876543210" class="info-value">+91 98765 43210</a>
+            </div>
+          </div>
+
+          <div class="contact-info-pill">
+            <div class="info-icon-circle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            <div class="info-text">
+              <span class="info-label">Email us</span>
+              <a href="mailto:hello@barkfy.com" class="info-value">hello@barkfy.com</a>
+            </div>
+          </div>
+
+          <div class="contact-info-pill">
+            <div class="info-icon-circle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="info-text">
+              <span class="info-label">Studio Hours</span>
+              <span class="info-value">Mon – Sat, 9:00 AM – 7:00 PM</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="svc-form-right">
         <form id="svcBookingForm">

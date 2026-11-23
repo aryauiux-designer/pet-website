@@ -1,5 +1,5 @@
 /* ============================================================
-   PRODUCT DETAILS PAGE  —  product-details.js
+   PRODUCT DETAILS PAGE  â€”  product-details.js
    Dynamic product catalog engine supporting ALL products:
      - collar (Lavender collar)
      - food   (EverPaw complete dog food)
@@ -19,6 +19,7 @@ const PRODUCTS_DATABASE = {
     price: 599,
     optionLabel: "Size",
     options: ["S", "M", "L"],
+    optionPrices: { "S": 549, "M": 599, "L": 649 },
     defaultOption: "M",
     hasSizeGuide: true,
     sizeGuideType: "collar",
@@ -27,13 +28,13 @@ const PRODUCTS_DATABASE = {
       "images/new-launch/accessories.png",
       "images/category/collar.png"
     ],
-    desc: "A lavender collar with a gold buckle and a matching tag, made for everyday walks. Handcrafted using ultra-durable vegan composite leather that remains soft against your pup’s fur while resisting weather, dirt, and daily pulls.",
+    desc: "A lavender collar with a gold buckle and a matching tag, made for everyday walks. Handcrafted using ultra-durable vegan composite leather that remains soft against your pupâ€™s fur while resisting weather, dirt, and daily pulls.",
     specs: [
       { label: "Material", val: "Reinforced vegan faux-leather with matte lavender finish" },
       { label: "Hardware", val: "Solid zinc-alloy buckle and D-ring in brushed champagne gold" },
       { label: "Tag", val: "Engravable Barkfy identity token included" },
       { label: "Cleaning", val: "Wipe clean with a damp warm cloth; air dry" },
-      { label: "Sizes", val: 'S (10"–14"), M (14"–18"), L (18"–22")' }
+      { label: "Sizes", val: 'S (10"â€“14"), M (14"â€“18"), L (18"â€“22")' }
     ]
   },
 
@@ -46,6 +47,7 @@ const PRODUCTS_DATABASE = {
     price: 1549,
     optionLabel: "Bag Weight",
     options: ["1 kg", "3 kg", "5 kg"],
+    optionPrices: { "1 kg": 699, "3 kg": 1549, "5 kg": 2399 },
     defaultOption: "3 kg",
     hasSizeGuide: true,
     sizeGuideType: "food",
@@ -73,6 +75,7 @@ const PRODUCTS_DATABASE = {
     price: 649,
     optionLabel: "Bottle Size",
     options: ["250 ml", "500 ml"],
+    optionPrices: { "250 ml": 649, "500 ml": 1149 },
     defaultOption: "250 ml",
     hasSizeGuide: false,
     subtitle: "Gentle foam for paws and coat. No-rinse formula with lavender extract and colloidal oatmeal.",
@@ -98,6 +101,7 @@ const PRODUCTS_DATABASE = {
     price: 399,
     optionLabel: "Pack Size",
     options: ["1 Ball", "Pack of 2"],
+    optionPrices: { "1 Ball": 399, "Pack of 2": 699 },
     defaultOption: "1 Ball",
     hasSizeGuide: false,
     subtitle: "Soft tennis-style plush wool ball for fetch with gentle low-noise squeaker.",
@@ -105,7 +109,7 @@ const PRODUCTS_DATABASE = {
       "images/category/ball.png",
       "images/new-launch/toys.jpg"
     ],
-    desc: "Engineered for hours of interactive fetch without irritating loud shrieks. Built with reinforced double seams, natural wool felt, and a cushioned chew-friendly core that’s gentle on puppy teeth and tender gums.",
+    desc: "Engineered for hours of interactive fetch without irritating loud shrieks. Built with reinforced double seams, natural wool felt, and a cushioned chew-friendly core thatâ€™s gentle on puppy teeth and tender gums.",
     specs: [
       { label: "Material", val: "Non-abrasive wool felt & recycled cotton core" },
       { label: "Squeaker", val: "Low-decibel gentle pup squeaker" },
@@ -123,6 +127,7 @@ const PRODUCTS_DATABASE = {
     price: 1899,
     optionLabel: "Bed Size",
     options: ["S", "M", "L", "XL"],
+    optionPrices: { "S": 1599, "M": 1899, "L": 2299, "XL": 2799 },
     defaultOption: "M",
     hasSizeGuide: true,
     sizeGuideType: "bed",
@@ -131,9 +136,9 @@ const PRODUCTS_DATABASE = {
       "images/category/bed.png",
       "images/new-launch/comfort.png"
     ],
-    desc: "The Barkfy Cloud Bed combines dual-density orthopedic foam with supportive bolstered walls that cradle your pet’s head and neck. Crafted with breathable ticking stripe canvas that looks stylish in your home while resisting digging and hair.",
+    desc: "The Barkfy Cloud Bed combines dual-density orthopedic foam with supportive bolstered walls that cradle your petâ€™s head and neck. Crafted with breathable ticking stripe canvas that looks stylish in your home while resisting digging and hair.",
     specs: [
-      { label: "Core", val: "CertiPUR-US® orthopedic memory foam base" },
+      { label: "Core", val: "CertiPUR-USÂ® orthopedic memory foam base" },
       { label: "Cover", val: "100% cotton ticking stripe canvas with water-resistant liner" },
       { label: "Bottom", val: "Non-skid silicone dot grip base" },
       { label: "Cleaning", val: "Removable zipper cover is 100% machine washable" }
@@ -149,6 +154,7 @@ const PRODUCTS_DATABASE = {
     price: 2499,
     optionLabel: "Bundle",
     options: ["Starter (4 items)", "Deluxe (6 items)"],
+    optionPrices: { "Starter (4 items)": 2499, "Deluxe (6 items)": 3799 },
     defaultOption: "Starter (4 items)",
     hasSizeGuide: false,
     subtitle: "The all-in-one starter bundle: collar, complete food pack, plush squeak ball, and foaming shampoo.",
@@ -156,7 +162,7 @@ const PRODUCTS_DATABASE = {
       "images/category/combo.png",
       "images/new-launch/combo.jpg"
     ],
-    desc: "Make homecoming unforgettable with the curated Barkfy Welcome Bundle. Featuring our top-rated lavender walk collar, an EverPaw healthy kibble sampler, the gentle Loopy paw foam, and a cozy plush ball—saving over 25% compared to individual items.",
+    desc: "Make homecoming unforgettable with the curated Barkfy Welcome Bundle. Featuring our top-rated lavender walk collar, an EverPaw healthy kibble sampler, the gentle Loopy paw foam, and a cozy plush ballâ€”saving over 25% compared to individual items.",
     specs: [
       { label: "Bundle Includes", val: "Collar, Food pouch (1kg), Foaming wash (250ml), Plush ball" },
       { label: "Savings", val: "Save 25% compared to purchasing items separately" },
@@ -166,7 +172,7 @@ const PRODUCTS_DATABASE = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* ── 1. Determine active product from URL ── */
+  /* â”€â”€ 1. Determine active product from URL â”€â”€ */
   const urlParams = new URLSearchParams(window.location.search);
   const requestedId = urlParams.get("id");
   const productKey = (requestedId && PRODUCTS_DATABASE[requestedId]) ? requestedId : "collar";
@@ -175,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentQty = 1;
   let selectedOption = product.defaultOption || product.options[0];
 
-  /* ── 2. Toast Helper ── */
+  /* â”€â”€ 2. Toast Helper â”€â”€ */
   function showToast(msg) {
     const toast = document.getElementById("siteToast");
     if (!toast) return;
@@ -187,8 +193,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3200);
   }
 
-  /* ── 3. Populate Page with Active Product Data ── */
-  document.title = `${product.name} — BARKFY`;
+  /* â”€â”€ 3. Populate Page with Active Product Data â”€â”€ */
+  document.title = `${product.name} â€” BARKFY`;
 
   // Breadcrumbs
   const catLink = document.getElementById("pdpCatLink");
@@ -247,7 +253,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (subEl) subEl.textContent = product.subtitle;
 
   const unitPriceEl = document.getElementById("unitPriceDisplay");
-  if (unitPriceEl) unitPriceEl.textContent = `₹${product.price.toLocaleString("en-IN")}`;
+
+  // Determine initial variant price (supports per-option pricing like food weights)
+  let currentVariantPrice = (product.optionPrices && product.optionPrices[selectedOption] !== undefined)
+    ? product.optionPrices[selectedOption]
+    : product.price;
+  if (unitPriceEl) unitPriceEl.textContent = `\u20B9${currentVariantPrice.toLocaleString("en-IN")}`;
 
   // Option Label (Size / Weight / Pack)
   const optionLabelEl = document.getElementById("pdpOptionLabel");
@@ -278,6 +289,15 @@ document.addEventListener("DOMContentLoaded", function () {
         chip.classList.add("active");
         chip.setAttribute("aria-checked", "true");
         selectedOption = chip.dataset.val;
+
+        // Update unit price when variant has per-option prices (e.g. food weight tiers)
+        if (product.optionPrices && product.optionPrices[selectedOption] !== undefined) {
+          currentVariantPrice = product.optionPrices[selectedOption];
+        } else {
+          currentVariantPrice = product.price;
+        }
+        if (unitPriceEl) unitPriceEl.textContent = `\u20B9${currentVariantPrice.toLocaleString("en-IN")}`;
+        updatePrice();
       });
     });
   }
@@ -297,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  /* ── 4. Quantity & Total Price Calculation ── */
+  /* â”€â”€ 4. Quantity & Total Price Calculation â”€â”€ */
   const qtyVal = document.getElementById("pdpQtyVal");
   const qtyDec = document.getElementById("pdpQtyDec");
   const qtyInc = document.getElementById("pdpQtyInc");
@@ -306,8 +326,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function updatePrice() {
     if (qtyVal) qtyVal.textContent = currentQty;
     if (cartTotal) {
-      const total = product.price * currentQty;
-      cartTotal.textContent = "₹" + total.toLocaleString("en-IN");
+      const total = currentVariantPrice * currentQty;
+      cartTotal.textContent = "\u20B9" + total.toLocaleString("en-IN");
     }
   }
   updatePrice();
@@ -330,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ── 5. Add to Cart Button ── */
+  /* â”€â”€ 5. Add to Cart Button â”€â”€ */
   const CART_STORAGE_KEY = "barkfy_cart_items";
 
   function updateHeaderCartCount() {
@@ -371,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
           id: product.id,
           name: product.name,
           variant: selectedOption || "Standard",
-          price: product.price,
+          price: currentVariantPrice,
           qty: currentQty,
           image: product.images[0],
           link: `product-details.html?id=${product.id}`
@@ -383,24 +403,24 @@ document.addEventListener("DOMContentLoaded", function () {
       } catch (e) {}
 
       updateHeaderCartCount();
-      showToast(`Added ${currentQty} × ${product.name} (${selectedOption}) to cart! 🐾`);
+      showToast(`Added ${currentQty} Ã— ${product.name} (${selectedOption}) to cart! ðŸ¾`);
     });
   }
 
-  /* ── 6. Wishlist Button ── */
+  /* â”€â”€ 6. Wishlist Button â”€â”€ */
   const wishlistBtn = document.getElementById("pdpWishlistBtn");
   if (wishlistBtn) {
     wishlistBtn.addEventListener("click", () => {
       const isSaved = wishlistBtn.classList.toggle("active");
       if (isSaved) {
-        showToast(`Saved ${product.name} to your wishlist! ♥`);
+        showToast(`Saved ${product.name} to your wishlist! \u2661`);
       } else {
         showToast("Removed from your wishlist.");
       }
     });
   }
 
-  /* ── 7. Tabs Switching ── */
+  /* â”€â”€ 7. Tabs Switching â”€â”€ */
   const tabBtns = document.querySelectorAll(".pdp-tab-btn");
   const tabPanels = document.querySelectorAll(".pdp-tab-panel");
 
@@ -427,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  /* ── 8. Size Guide Modal ── */
+  /* â”€â”€ 8. Size Guide Modal â”€â”€ */
   const sizeModal = document.getElementById("sizeGuideModal");
   const sizeClose = document.getElementById("sizeGuideClose");
 
@@ -453,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ── 9. Dynamic Related Products ("You may also like") ── */
+  /* â”€â”€ 9. Dynamic Related Products ("You may also like") â”€â”€ */
   const relatedGrid = document.getElementById("pdpRelatedGrid");
   if (relatedGrid) {
     // Pick 3 other products excluding the current one
@@ -469,14 +489,14 @@ document.addEventListener("DOMContentLoaded", function () {
           </a>
           <div class="pdp-rel-info">
             <h3 class="pdp-rel-name"><a href="product-details.html?id=${p.id}">${p.name}</a></h3>
-            <span class="pdp-rel-price">₹${p.price.toLocaleString("en-IN")}</span>
+            <span class="pdp-rel-price">\u20B9${p.price.toLocaleString("en-IN")}</span>
           </div>
         </article>
       `;
     }).join("");
   }
 
-  /* ── 10. Topbar Burger & Account Drawer ── */
+  /* â”€â”€ 10. Topbar Burger & Account Drawer â”€â”€ */
   const burger = document.getElementById("burger");
   const drawer = document.getElementById("accountDrawer");
   const backdrop = document.getElementById("drawerBackdrop");
@@ -582,7 +602,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateAccountDrawer();
 
-  /* ── 11. Escape Key Handler ── */
+  /* â”€â”€ 11. Escape Key Handler â”€â”€ */
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       closeSizeModal();
@@ -590,21 +610,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ── 12. Footer Newsletter Form ── */
+  /* â”€â”€ 12. Footer Newsletter Form â”€â”€ */
   const newsletterForm = document.getElementById("pdpNewsletterForm");
   if (newsletterForm) {
     newsletterForm.addEventListener("submit", e => {
       e.preventDefault();
-      showToast("You're subscribed! Monthly care tips incoming. 🐕");
+      showToast("You're subscribed! Monthly care tips incoming. ðŸ•");
       newsletterForm.reset();
     });
   }
 
-  /* ── 13. Header Cart Button ── */
+  /* â”€â”€ 13. Header Cart Button â”€â”€ */
   const cartButton = document.getElementById("cartButton");
   if (cartButton) {
     cartButton.addEventListener("click", () => {
-      showToast("Cart opened — browse items or checkout! 🐾");
+      showToast("Cart opened â€” browse items or checkout! ðŸ¾");
     });
   }
 });

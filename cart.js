@@ -141,59 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }).join("");
     }
 
-    // KEY FIX: Use EVENT DELEGATION on itemsListEl so clicks on SVG/span children still work
-    // (listeners survive re-renders because they're on the stable parent)
-    // We attach ONE listener after each render; previous ones are wiped because innerHTML rebuilt the DOM.
-    if (itemsListEl) {
-      itemsListEl.addEventListener("click", function handleListClick(e) {
-        // --- Remove button ---
-        const removeBtn = e.target.closest(".item-remove-btn");
-        if (removeBtn) {
-          const idx = parseInt(removeBtn.dataset.index, 10);
-          if (!isNaN(idx) && cart[idx]) {
-            const itemTitle = cart[idx].name;
-            cart.splice(idx, 1);
-            saveCartItems(cart);
-            renderCart();
-            showToast(`Removed ${itemTitle} from cart.`);
-          }
-          return;
-        }
-
-        // --- Increment ---
-        const incBtn = e.target.closest(".cart-qty-btn.inc");
-        if (incBtn) {
-          const idx = parseInt(incBtn.dataset.index, 10);
-          if (!isNaN(idx) && cart[idx] && cart[idx].qty < 20) {
-            cart[idx].qty++;
-            saveCartItems(cart);
-            renderCart();
-          }
-          return;
-        }
-
-        // --- Decrement ---
-        const decBtn = e.target.closest(".cart-qty-btn.dec");
-        if (decBtn) {
-          const idx = parseInt(decBtn.dataset.index, 10);
-          if (!isNaN(idx) && cart[idx]) {
-            if (cart[idx].qty > 1) {
-              cart[idx].qty--;
-              saveCartItems(cart);
-              renderCart();
-            } else {
-              const itemTitle = cart[idx].name;
-              cart.splice(idx, 1);
-              saveCartItems(cart);
-              renderCart();
-              showToast(`Removed ${itemTitle} from cart.`);
-            }
-          }
-          return;
-        }
-      });
-    }
-
     // Recalculate Totals
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     if (subtotalEl) {
@@ -214,6 +161,57 @@ document.addEventListener("DOMContentLoaded", function () {
     if (totalEl) {
       totalEl.textContent = "₹" + grandTotal.toLocaleString("en-IN");
     }
+  }
+
+  // ── Cart item interaction: ONE delegated listener, outside renderCart() ──
+  if (itemsListEl) {
+    itemsListEl.addEventListener("click", function handleListClick(e) {
+      // --- Remove button ---
+      const removeBtn = e.target.closest(".item-remove-btn");
+      if (removeBtn) {
+        const idx = parseInt(removeBtn.dataset.index, 10);
+        if (!isNaN(idx) && cart[idx]) {
+          const itemTitle = cart[idx].name;
+          cart.splice(idx, 1);
+          saveCartItems(cart);
+          renderCart();
+          showToast(`Removed ${itemTitle} from cart.`);
+        }
+        return;
+      }
+
+      // --- Increment ---
+      const incBtn = e.target.closest(".cart-qty-btn.inc");
+      if (incBtn) {
+        const idx = parseInt(incBtn.dataset.index, 10);
+        if (!isNaN(idx) && cart[idx] && cart[idx].qty < 20) {
+          cart[idx].qty++;
+          saveCartItems(cart);
+          renderCart();
+        }
+        return;
+      }
+
+      // --- Decrement ---
+      const decBtn = e.target.closest(".cart-qty-btn.dec");
+      if (decBtn) {
+        const idx = parseInt(decBtn.dataset.index, 10);
+        if (!isNaN(idx) && cart[idx]) {
+          if (cart[idx].qty > 1) {
+            cart[idx].qty--;
+            saveCartItems(cart);
+            renderCart();
+          } else {
+            const itemTitle = cart[idx].name;
+            cart.splice(idx, 1);
+            saveCartItems(cart);
+            renderCart();
+            showToast(`Removed ${itemTitle} from cart.`);
+          }
+        }
+        return;
+      }
+    });
   }
 
   // Initial render

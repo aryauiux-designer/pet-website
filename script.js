@@ -465,17 +465,28 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".logged-out-view, #loggedOutView").forEach(el => el.hidden = loggedIn);
     document.querySelectorAll(".logged-in-view, #loggedInView").forEach(el => el.hidden = !loggedIn);
 
+    // Desktop Header Auth Controls
+    const headerAuthLoggedOut = document.getElementById("headerAuthLoggedOut");
+    const headerAuthLoggedIn = document.getElementById("headerAuthLoggedIn");
+    if (headerAuthLoggedOut) headerAuthLoggedOut.hidden = loggedIn;
+    if (headerAuthLoggedIn) headerAuthLoggedIn.hidden = !loggedIn;
+
+    const initial = (currentUser?.name || "U").trim().charAt(0).toUpperCase();
+
     if (loggedIn && currentUser) {
-      document.querySelectorAll("#profileName").forEach(el => {
+      document.querySelectorAll("#profileName, #dropdownProfileName").forEach(el => {
         el.textContent = currentUser.name || "[Your name]";
       });
-      document.querySelectorAll("#profileEmail").forEach(el => {
+      document.querySelectorAll("#profileEmail, #dropdownProfileEmail").forEach(el => {
         el.textContent = currentUser.email || "[you@example.com]";
       });
       document.querySelectorAll("#profileAvatar").forEach(el => {
-        const initial = (currentUser.name || "U").trim().charAt(0).toUpperCase();
         el.innerHTML = `<span style="font-size: 18px; font-weight: 700; color: #5C67BA;">${initial}</span>`;
       });
+      const headerAvatarInitial = document.getElementById("headerAvatarInitial");
+      if (headerAvatarInitial) headerAvatarInitial.textContent = initial;
+      const dropdownAvatarInitial = document.getElementById("dropdownAvatarInitial");
+      if (dropdownAvatarInitial) dropdownAvatarInitial.textContent = initial;
     }
 
     // Highlight active drawer link based on current page
@@ -536,9 +547,84 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   if (backdrop) backdrop.addEventListener("click", closeDrawer);
 
-  // Close on Escape
+  // ── DESKTOP HEADER DROPDOWN & AUTH ──────────────────────────
+  const headerAvatarBtn = document.getElementById("headerAvatarBtn");
+  const accountDropdown = document.getElementById("accountDropdown");
+
+  function openHeaderDropdown() {
+    if (!accountDropdown) return;
+    accountDropdown.classList.add("open");
+    accountDropdown.setAttribute("aria-hidden", "false");
+    headerAvatarBtn?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeHeaderDropdown() {
+    if (!accountDropdown) return;
+    accountDropdown.classList.remove("open");
+    accountDropdown.setAttribute("aria-hidden", "true");
+    headerAvatarBtn?.setAttribute("aria-expanded", "false");
+  }
+
+  if (headerAvatarBtn) {
+    headerAvatarBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (accountDropdown && accountDropdown.classList.contains("open")) {
+        closeHeaderDropdown();
+      } else {
+        openHeaderDropdown();
+      }
+    });
+  }
+
+  // Close dropdown on click outside
+  document.addEventListener("click", (e) => {
+    if (accountDropdown && accountDropdown.classList.contains("open")) {
+      const headerAuthLoggedIn = document.getElementById("headerAuthLoggedIn");
+      if (headerAuthLoggedIn && !headerAuthLoggedIn.contains(e.target)) {
+        closeHeaderDropdown();
+      }
+    }
+  });
+
+  // Desktop Sign in & Sign up buttons
+  document.getElementById("headerSignIn")?.addEventListener("click", () => {
+    openBarkfyAuth("signin");
+  });
+
+  document.getElementById("headerSignUp")?.addEventListener("click", () => {
+    openBarkfyAuth("signup");
+  });
+
+  // Desktop Dropdown Logout button
+  document.getElementById("dropdownLogoutButton")?.addEventListener("click", () => {
+    currentUser = null;
+    localStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(SESSION_KEY);
+    updateAccountDrawer();
+    closeHeaderDropdown();
+    showBarkfyMessage("You have been logged out.");
+  });
+
+  // Close dropdown when any link inside is clicked
+  accountDropdown?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      closeHeaderDropdown();
+    });
+  });
+
+  // Close drawer when in-drawer hash anchor is clicked on mobile
+  drawer?.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", () => {
+      closeDrawer();
+    });
+  });
+
+  // Close on Escape (both drawer and dropdown)
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeDrawer();
+    if (e.key === "Escape") {
+      closeDrawer();
+      closeHeaderDropdown();
+    }
   });
 
 
